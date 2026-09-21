@@ -108,9 +108,11 @@ class RegisterController extends BaseController
 
         $this->guard()->login($customer);
 
+        $intendedUrl = session()->pull('url.intended', route('customer.overview'));
+
         return $this
             ->httpResponse()
-            ->setNextUrl(route('customer.overview'))
+            ->setNextUrl($intendedUrl)
             ->setMessage(__('You successfully confirmed your email address.'));
     }
 

@@ -443,6 +443,16 @@ class PublicController extends Controller
         BookingService $bookingService,
         BaseHttpResponse $response
     ) {
+        if (! Auth::guard('customer')->check()) {
+            $token = $request->input('token');
+
+            if ($token && session()->has($token)) {
+                session()->put('url.intended', route('public.booking.form', ['token' => $token]));
+            }
+
+            return redirect()->route('customer.login');
+        }
+
         do_action('form_extra_fields_validate', $request);
 
         $token = $request->input('token');

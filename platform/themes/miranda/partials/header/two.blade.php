@@ -38,6 +38,23 @@
 
                     <div class="menu-items">
                         {!! Menu::renderMenuLocation('header-menu', ['view' => 'menu']) !!}
+                        <ul class="auth-menu">
+                            @if (auth('customer')->check())
+                                <li>
+                                    <a href="{{ route('customer.overview') }}">{{ __('My Account') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('customer.logout') }}">{{ __('Logout') }}</a>
+                                </li>
+                            @else
+                                <li>
+                                    <a href="{{ route('customer.login') }}">{{ __('Login') }}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('customer.register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        </ul>
                     </div>
                 </div>
 
