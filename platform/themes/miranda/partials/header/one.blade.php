@@ -11,6 +11,8 @@
                     <a
                         id="offCanvasBtn"
                         href="#"
+                        aria-expanded="false"
+                        aria-controls="miranda-offcanvas"
                         title="menu"
                     ><i class="fal fa-bars"></i></a>
                 </div>

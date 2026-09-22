@@ -29,6 +29,7 @@ mix
                 safelist: [
                     /dd-trigger/,
                     /menu-on/,
+                    /menu-open/,
                     /^offcanvas-/,
                     /show-offcanvas/,
                     /^nice-/,

@@ -63,7 +63,22 @@ let mirandaDoc
                 navbarToggler = $('.navbar-toggler'),
                 navMenu = $('.nav-menu'),
                 navMenuLi = $('.nav-menu ul li'),
-                closeIcon = $('.navbar-close')
+                closeIcon = $('.navbar-close'),
+                offcanvasButton = $('#offCanvasBtn'),
+                offcanvasWrapper = $('.offcanvas-wrapper'),
+                offcanvasOverlay = $('.offcanvas-overly')
+
+            function resetNavigationState() {
+                navMenu.removeClass('menu-on')
+                navbarToggler.removeClass('active')
+                offcanvasWrapper.removeClass('show-offcanvas')
+                offcanvasOverlay.removeClass('show-overly')
+                offcanvasButton.removeClass('active').attr('aria-expanded', 'false')
+                offcanvasButton.find('i').removeClass('fa-times').addClass('fa-bars')
+                $('body').removeClass('menu-open')
+            }
+
+            resetNavigationState()
 
             // navbar toggler
             navbarToggler.on('click', function () {
@@ -95,15 +110,30 @@ let mirandaDoc
 
             // check browser width in real-time
             function breakpointCheck() {
-                navContainer.addClass('breakpoint-on')
-                pushedWrap.html(pushedHtml)
-                pushItem.hide()
+                if (window.innerWidth <= 991) {
+                    navContainer.addClass('breakpoint-on')
+
+                    pushedWrap.html(pushedHtml)
+                    pushItem.hide()
+                } else {
+                    navContainer.removeClass('breakpoint-on')
+                    navMenu.removeClass('menu-on')
+                    navbarToggler.removeClass('active')
+                    $('body').removeClass('menu-open')
+
+                    pushedWrap.html(pushBlank)
+                    pushItem.show()
+                }
             }
 
             breakpointCheck()
             var_window.on('resize', function () {
                 breakpointCheck()
             })
+
+            $(window).on('pageshow', resetNavigationState)
+            $(window).on('beforeunload pagehide', resetNavigationState)
+            navMenu.find('a').on('click', resetNavigationState)
         },
 
         //===== 02. Banner Slider
@@ -576,17 +606,26 @@ let mirandaDoc
                 e.preventDefault()
                 $('.offcanvas-wrapper').addClass('show-offcanvas')
                 $('.offcanvas-overly').addClass('show-overly')
+                $(this).addClass('active').attr('aria-expanded', 'true')
+                $(this).find('i').removeClass('fa-bars').addClass('fa-times')
+                $('body').addClass('menu-open')
             })
             // Set Click Function For Close
             $('.offcanvas-close').on('click', function (e) {
                 e.preventDefault()
                 $('.offcanvas-overly').removeClass('show-overly')
                 $('.offcanvas-wrapper').removeClass('show-offcanvas')
+                offcanvasButton.removeClass('active').attr('aria-expanded', 'false')
+                offcanvasButton.find('i').removeClass('fa-times').addClass('fa-bars')
+                $('body').removeClass('menu-open')
             })
             // Set Click Function on Overly For open on
             $('.offcanvas-overly').on('click', function () {
                 $(this).removeClass('show-overly')
                 $('.offcanvas-wrapper').removeClass('show-offcanvas')
+                offcanvasButton.removeClass('active').attr('aria-expanded', 'false')
+                offcanvasButton.find('i').removeClass('fa-times').addClass('fa-bars')
+                $('body').removeClass('menu-open')
             })
         },
 

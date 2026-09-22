@@ -33,7 +33,7 @@
         </div>
     @endif
     {!! Theme::partial('header.' . theme_option('header_style', 'one')) !!}
-    <div class="offcanvas-wrapper">
+    <div id="miranda-offcanvas" class="offcanvas-wrapper">
         <div class="offcanvas-overly"></div>
         <div class="offcanvas-widget">
             <a href="#" class="offcanvas-close"><i class="fal fa-times"></i></a>
@@ -54,6 +54,15 @@
             <div class="widget nav-widget">
                 <h5 class="widget-title">{{ __('Our pages') }}</h5>
                 {!! Menu::renderMenuLocation('side-menu', ['view' => 'menu']) !!}
+                <ul class="auth-links">
+                    @if (auth('customer')->check())
+                        <li><a href="{{ route('customer.overview') }}">{{ __('My Account') }}</a></li>
+                        <li><a href="{{ route('customer.logout') }}">{{ __('Logout') }}</a></li>
+                    @else
+                        <li><a href="{{ route('customer.login') }}">{{ __('Login') }}</a></li>
+                        <li><a href="{{ route('customer.register') }}">{{ __('Register') }}</a></li>
+                    @endif
+                </ul>
             </div>
             <div class="widget social-link">
                 <h5 class="widget-title">{{ __('Contact us') }}</h5>
