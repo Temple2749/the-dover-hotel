@@ -69,12 +69,14 @@ let mirandaDoc
             navbarToggler.on('click', function () {
                 navbarToggler.toggleClass('active')
                 navMenu.toggleClass('menu-on')
+                $('body').toggleClass('menu-open', navMenu.hasClass('menu-on'))
             })
 
             // close icon
             closeIcon.on('click', function () {
                 navMenu.removeClass('menu-on')
                 navbarToggler.removeClass('active')
+                $('body').removeClass('menu-open')
             })
 
             // adds toggle button to li items that have children
@@ -93,18 +95,9 @@ let mirandaDoc
 
             // check browser width in real-time
             function breakpointCheck() {
-                let windoWidth = window.innerWidth
-                if (windoWidth <= 991) {
-                    navContainer.addClass('breakpoint-on')
-
-                    pushedWrap.html(pushedHtml)
-                    pushItem.hide()
-                } else {
-                    navContainer.removeClass('breakpoint-on')
-
-                    pushedWrap.html(pushBlank)
-                    pushItem.show()
-                }
+                navContainer.addClass('breakpoint-on')
+                pushedWrap.html(pushedHtml)
+                pushItem.hide()
             }
 
             breakpointCheck()

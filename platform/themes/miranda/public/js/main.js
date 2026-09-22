@@ -1,1 +1,1104 @@
-(()=>{var e,o={3444:()=>{"use strict";$((function(){$(".language-wrapper .dropdown .dropdown-toggle").off("click").on("click",(function(e){e.preventDefault();var o=$(e.currentTarget);o.hasClass("active")?(o.closest(".language-wrapper").find(".dropdown .dropdown-menu").hide(),o.removeClass("active")):(o.closest(".language-wrapper").find(".dropdown .dropdown-menu").show(),o.addClass("active"))})),$(document).on("click",(function(e){var o=$(e.currentTarget);0===o.closest(".language-wrapper").length&&(o.closest(".language-wrapper").find(".dropdown .dropdown-menu").hide(),o.closest(".language-wrapper").find(".dropdown .dropdown-toggle").removeClass("active"))}))}))},8983:(e,o,t)=>{var a;!function(e){"use strict";var o="rtl"===e("body").prop("dir");a={init:function(){this.mainMenu(),this.bannerSlider(),this.roomSlider(),this.testimonialSlider(),this.latestPostlider(),this.featureRoom(),this.roomDetailsSlider(),this.counterToUp(),this.instaFeedSlider(),this.menuSlider(),this.gallery(),this.roomSliderTwo(),this.bannerImgSlider(),this.offCanvas(),this.extraPlugin(),this.popUpExtra(),this.searchForm()},mainMenu:function(){var o=e(window),t=e(".nav-container"),a=e(".nav-pushed-item"),n=e(".nav-push-item"),i=n.html(),r=e(".navbar-toggler"),s=e(".nav-menu"),l=(e(".nav-menu ul li"),e(".navbar-close"));function c(){window.innerWidth<=991?(t.addClass("breakpoint-on"),a.html(i),n.hide()):(t.removeClass("breakpoint-on"),a.html(""),n.show())}r.on("click",(function(){r.toggleClass("active"),s.toggleClass("menu-on")})),l.on("click",(function(){s.removeClass("menu-on"),r.removeClass("active")})),s.find("li a").each((function(){e(this).next().length>0&&e(this).parent("li").append('<span class="dd-trigger"><i class="fal fa-angle-down"></i></span>')})),s.find("li .dd-trigger").on("click",(function(o){o.preventDefault(),e(this).parent("li").children("ul").stop(!0,!0).slideToggle(350),e(this).parent("li").toggleClass("active")})),c(),o.on("resize",(function(){c()}))},bannerSlider:function(){var t=e("#bannerSlider");function a(o){o.each((function(){var o=e(this),t=o.data("delay"),a="animated "+o.data("animation");o.css({"animation-delay":t,"-webkit-animation-delay":t}),o.addClass(a).one("webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend",(function(){o.removeClass(a)}))}))}t.on("init",(function(){a(e(".single-banner:first-child").find("[data-animation]"))})),t.on("beforeChange",(function(o,t,n,i){a(e('.single-banner[data-slick-index="'+i+'"]').find("[data-animation]"))})),t.slick({rtl:o,infinite:!0,autoplay:!0,autoplaySpeed:5e3,dots:!1,fade:!0,arrows:!1,prevArrow:'<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',nextArrow:'<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>'})},roomSlider:function(){var t=e(".rooms-slider-one"),a=e(".room-content-slider"),n=e(".slider-count"),i=e(".slider-count-big");t.slick({rtl:o,slidesToShow:3,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!1,dots:!1,centerMode:!0,centerPadding:"6%",asNavFor:a,responsive:[{breakpoint:1600,settings:{slidesToShow:2}},{breakpoint:992,settings:{slidesToShow:1,centerPadding:"15%"}}]}),a.slick({rtl:o,slidesToShow:1,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!1,dots:!0,asNavFor:t}),a.on("init reInit afterChange",(function(e,o,t){if(o.$dots){var a=(t||0)+1,r=a>10?a:"0"+a;n.html('<span class="current">'+r+"</span>/"+o.$dots[0].children.length),i.html("<span >"+r+"</span> ")}}))},testimonialSlider:function(){e(".testimonial-slider").slick({rtl:o,slidesToShow:3,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!1,dots:!0,responsive:[{breakpoint:992,settings:{slidesToShow:2}},{breakpoint:576,settings:{slidesToShow:1}}]})},latestPostlider:function(){var t=e(".latest-post-slider"),a=e(".latest-post-arrow");t.slick({rtl:o,slidesToShow:3,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!0,dots:!1,prevArrow:'<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',nextArrow:'<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',appendArrows:a,responsive:[{breakpoint:992,settings:{slidesToShow:2}},{breakpoint:576,settings:{slidesToShow:1}}]})},featureRoom:function(){var t=e(".feature-room-slider"),a=e(".feature-room-arrow");t.slick({rtl:o,slidesToShow:3,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!0,dots:!1,prevArrow:'<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',nextArrow:'<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',appendArrows:a,responsive:[{breakpoint:992,settings:{slidesToShow:2}},{breakpoint:576,settings:{slidesToShow:1}}]})},counterToUp:function(){e(".counter-box").bind("inview",(function(o,t){t&&(e(this).find(".counter").each((function(){var o=e(this);e({Counter:0}).animate({Counter:o.text()},{duration:2e3,easing:"swing",step:function(){o.text(Math.ceil(this.Counter))}})})),e(this).unbind("inview"))}))},instaFeedSlider:function(){e(".instagram-slider").slick({rtl:o,slidesToShow:6,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!1,dots:!1,responsive:[{breakpoint:992,settings:{slidesToShow:4}},{breakpoint:768,settings:{slidesToShow:3}},{breakpoint:576,settings:{slidesToShow:2}}]}),jQuery().magnificPopup&&e(".instagram-slider").each((function(){e(".image a.insta-popup").not(".slick-slide.slick-cloned a.insta-popup").magnificPopup({type:"image",gallery:{enabled:!0},mainClass:"mfp-fade"})}))},menuSlider:function(){var t=e(".menu-slider"),a=e(".menu-slider-arrow");t.slick({rtl:o,slidesToShow:1,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!0,dots:!1,prevArrow:'<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',nextArrow:'<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',appendArrows:a})},gallery:function(){e(".gallery-slider").slick({rtl:o,slidesToShow:3,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!1,dots:!1,responsive:[{breakpoint:768,settings:{slidesToShow:2}},{breakpoint:500,settings:{slidesToShow:1}}]}),jQuery().magnificPopup&&e(".gallery-slider").each((function(){e(".slick-slide a.gallery-popup").not(".slick-slide.slick-cloned a.gallery-popup").magnificPopup({type:"image",gallery:{enabled:!0},mainClass:"mfp-fade"})}))},roomSliderTwo:function(){e(".rooms-slider-two").slick({rtl:o,slidesToShow:1,slidesToScroll:1,fade:!1,infinite:!0,autoplay:!1,autoplaySpeed:4e3,arrows:!0,dots:!1,centerMode:!0,centerPadding:"28%",prevArrow:'<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',nextArrow:'<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',responsive:[{breakpoint:1600,settings:{centerPadding:"20%"}},{breakpoint:992,settings:{centerPadding:"15%"}},{breakpoint:768,settings:{centerPadding:"10%"}},{breakpoint:576,settings:{centerPadding:"5%"}}]})},roomDetailsSlider:function(){var t=e(".room-details-slider");if(t.length){var a=e(".room-details-slider-nav");t.slick({rtl:o,slidesToShow:1,slidesToScroll:1,infinite:!0,autoplay:!1,arrows:!1,dots:!1,asNavFor:".room-details-slider-nav"}),t.lightGallery({selector:"a",thumbnail:!0,share:!1,fullScreen:!1,autoplay:!1,autoplayControls:!1,actualSize:!1}),a.slick({rtl:o,slidesToShow:6,slidesToScroll:1,asNavFor:".room-details-slider",dots:!1,arrows:!1,centerMode:!1,focusOnSelect:!0,responsive:[{breakpoint:1200,settings:{slidesToShow:4}},{breakpoint:576,settings:{slidesToShow:3}}]})}},bannerImgSlider:function(){e(".hero-slider-one").slick({rtl:o,slidesToShow:1,slidesToScroll:1,fade:!0,infinite:!0,autoplay:!0,autoplaySpeed:4e3,arrows:!1,dots:!1})},offCanvas:function(){e("#offCanvasBtn").on("click",(function(o){o.preventDefault(),e(".offcanvas-wrapper").addClass("show-offcanvas"),e(".offcanvas-overly").addClass("show-overly")})),e(".offcanvas-close").on("click",(function(o){o.preventDefault(),e(".offcanvas-overly").removeClass("show-overly"),e(".offcanvas-wrapper").removeClass("show-offcanvas")})),e(".offcanvas-overly").on("click",(function(){e(this).removeClass("show-overly"),e(".offcanvas-wrapper").removeClass("show-offcanvas")}))},extraPlugin:function(){e("select:not(.ignore-nice-select)").niceSelect(),this.initDatePicker(),(new WOW).init()},initDatePicker:function(){if(e(".date-picker").length>0){var o=new Date,t=new Date(o.getFullYear(),o.getMonth(),o.getDate());e(".date-picker").each((function(){var o={autoclose:!0,startDate:t},a=e(this).data("locale");a&&(o.language=a);var n=e(this).data("date-format");n&&(o.format=n),e(this).datepicker(o)})),e(document).on("change","#arrival-date",(function(){var o=e(this).datepicker("getDate");o.setTime(o.getTime()+864e5),e("#departure-date").datepicker("setDate",o).datepicker("option","startDate",o)}))}},popUpExtra:function(){jQuery().magnificPopup&&(e(".popup-video").magnificPopup({type:"iframe"}),e(".gallery-loop .popup-image").magnificPopup({type:"image",gallery:{enabled:!0},mainClass:"mfp-fade"}))},searchForm:function(){e("#searchBtn").on("click",(function(o){o.preventDefault(),e(".search-form").slideToggle(350),e(this).toggleClass("active")}))}},e(document).ready((function(){a.init()})),e(document).ready((function(){e(".room-book").on("click",(function(o){o.preventDefault();var t=e(this).next(".confirm-btn"),a=e(this).parent().prev(".item-boxs");t.toggleClass("d-flex"),a.slideToggle("d-flex")})),e(".remove-item").on("click",(function(o){o.preventDefault();var t=e(this).closest(".item-boxs"),a=t.next(".actions").find(".confirm-btn");t.hide(),a.toggleClass("d-flex")}))})),e(window).on("load",(function(){e(".preloader").fadeOut("slow",(function(){e(this).remove()})),e("#backToTop").on("click",(function(o){o.preventDefault(),e("html, body").animate({scrollTop:"0"},1200)}))})),e(window).on("scroll",(function(){var o=e(window).scrollTop();o<150?e(".sticky-header").removeClass("sticky-active"):e(".sticky-header").addClass("sticky-active"),o>300&&e("#backToTop").addClass("active"),o<300&&e("#backToTop").removeClass("active")})),e(document).ready((function(){e(".service-item").on("change",(function(){var o=[];e(".service-item:checked").each((function(t,a){o[t]=e(a).val()})),e("body").css("cursor","progress"),e(".custom-checkbox label").css("cursor","progress");var t=e(document).find(".payment-checkout-btn");t.prop("disabled",!0);var a=e(document).find('.payment-checkout-form .list_payment_method input[name="payment_method"]:checked').val();e.ajax({type:"GET",cache:!1,url:"/ajax/calculate-amount",data:{room_id:e("input[name=room_id]").val(),start_date:e("input[name=start_date]").val(),end_date:e("input[name=end_date]").val(),rooms:e("input[name=rooms]").val(),services:o},success:function(o){o.error||(e(".total-amount-text").text(o.data.total_amount),e(".amount-text").text(o.data.sub_total),e(".tax-text").text(o.data.tax_amount),e(".discount-text").text(o.data.discount_amount),e("input[name=amount]").val(o.data.amount_raw)),e("body").css("cursor","default"),e(".custom-checkbox label").css("cursor","pointer"),e(".payment-checkout-form .list_payment_method").load(window.location.href+" .payment-checkout-form .list_payment_method > *",(function(){t.prop("disabled",!1),e(document).find('.payment-checkout-form .list_payment_method input[value="'+a+'"]').prop("checked",!0).trigger("change")}))},error:function(){e("body").css("cursor","default"),e(".custom-checkbox label").css("cursor","pointer")}})}))}));var n=function(e){window.showAlert("alert-danger",e)},i=function(e){window.showAlert("alert-success",e)},r=function(o){void 0!==o.errors&&o.errors.length?s(o.errors):void 0!==o.responseJSON?void 0!==o.responseJSON.errors?422===o.status&&s(o.responseJSON.errors):void 0!==o.responseJSON.message?n(o.responseJSON.message):e.each(o.responseJSON,(function(o,t){e.each(t,(function(e,o){n(o)}))})):n(o.statusText)},s=function(o){var t="";e.each(o,(function(e,o){""!==t&&(t+="<br />"),t+=o})),n(t)};window.showAlert=function(o,t){if(o&&""!==t){var a=Math.floor(1e3*Math.random()),n='<div class="alert '.concat(o,' alert-dismissible" id="').concat(a,'">\n                <span class="close fa fa-times-circle" data-dismiss="alert" aria-label="close"></span>\n                <i class="fas fa-')+("alert-success"===o?"check-circle":"exclamation-circle")+' message-icon"></i>\n                '.concat(t,"\n            </div>");e("#alert-container").append(n).ready((function(){window.setTimeout((function(){e("#alert-container #".concat(a)).remove()}),6e3)}))}};var l=function(){var o=[];e(".service-item:checked").each((function(t,a){o[t]=e(a).val()}));var t=e(document).find(".payment-checkout-btn");t.prop("disabled",!0);var a=e(document).find('.payment-checkout-form .list_payment_method input[name="payment_method"]:checked').val();e.ajax({url:"/ajax/calculate-amount",type:"GET",data:{room_id:e("input[name=room_id]").val(),start_date:e("input[name=start_date]").val(),end_date:e("input[name=end_date]").val(),rooms:e("input[name=rooms]").val(),services:o},success:function(o){var i,s=o.error,l=o.message,c=o.data;if(s)n(l);else{e(".total-amount-text").text(c.total_amount),e("input[name=amount]").val(c.amount_raw),e(".amount-text").text(c.sub_total),e(".discount-text").text(c.discount_amount),e(".tax-text").text(c.tax_amount),e(".payment-checkout-form .list_payment_method").load(window.location.href+" .payment-checkout-form .list_payment_method > *",(function(){t.prop("disabled",!1),e(document).find('.payment-checkout-form .list_payment_method input[value="'+a+'"]').prop("checked",!0).trigger("change")}));var d=e(".order-detail-box").data("refresh-url");e.ajax({url:d,type:"GET",data:{coupon_code:null!==(i=e("input[name=coupon_hidden]").val())&&void 0!==i?i:e("input[name=coupon_code]").val()},success:function(o){var t=o.error,a=o.message,i=o.data;t?n(a):e(".order-detail-box").html(i)},error:function(e){r(e)}})}},error:function(e){r(e)}})};e(document).on("click",".toggle-coupon-form",(function(){return e(document).find(".coupon-form").toggle("fast")})).on("click",".apply-coupon-code",(function(o){o.preventDefault();var t=e(o.currentTarget);e.ajax({url:t.data("url"),type:"POST",data:{coupon_code:e("input[name=coupon_code]").val(),_token:t.closest("form").find('input[name="_token"]').val()},beforeSend:function(){t.addClass("button-loading")},success:function(e){var o=e.error,t=e.message;o?n(t):(i(t),l())},error:function(e){r(e)},complete:function(){t.removeClass("button-loading")}})})).on("click",".remove-coupon-code",(function(o){o.preventDefault();var t=e(o.currentTarget);e.ajax({url:t.data("url"),type:"POST",data:{_token:t.closest("form").find('input[name="_token"]').val()},beforeSend:function(){t.addClass("button-loading")},success:function(e){var o=e.message;e.error?n(o):(i(o),l())},error:function(e){r(e)},complete:function(){t.removeClass("button-loading")}})})),t(3444),e("a.down-arrow").on("click",(function(o){o.preventDefault();var t=e(o.currentTarget).attr("href");e([document.documentElement,document.body]).animate({scrollTop:e(t).offset().top},1e3)})),e(document).on("click",'[data-bb-toggle="decrement-room"]',(function(o){var t=e(o.currentTarget).closest(".input-quantity").find("input"),a=t.prop("name"),n=parseInt(t.prop("min")),i=parseInt(t.val());i>n&&(t.val(i-1),e('[data-bb-toggle="filter-'.concat(a,'-count"]')).text(i-1))})),e(document).on("click",'[data-bb-toggle="increment-room"]',(function(o){var t=e(o.currentTarget).closest(".input-quantity").find("input"),a=t.prop("name"),n=parseInt(t.prop("max")),i=parseInt(t.val());i<n&&(t.val(i+1),e('[data-bb-toggle="filter-'.concat(a,'-count"]')).text(i+1))})).on("click",'[data-bb-toggle="toggle-guests-and-rooms"]',(function(o){var t=e(o.currentTarget);e(t.data("target")).toggle("fast")}))}(jQuery)},9946:()=>{},5387:()=>{},7439:()=>{},4315:()=>{},2409:()=>{},790:()=>{},2981:()=>{},2129:()=>{},9189:()=>{},8807:()=>{},7239:()=>{},4405:()=>{},6611:()=>{},6719:()=>{},691:()=>{},6311:()=>{},6916:()=>{},4061:()=>{},4152:()=>{},481:()=>{},7924:()=>{},5970:()=>{},5052:()=>{},5876:()=>{},7004:()=>{},6109:()=>{},1648:()=>{},4398:()=>{},4168:()=>{},3242:()=>{},4016:()=>{},5118:()=>{},688:()=>{},1247:()=>{},7075:()=>{},5286:()=>{},2349:()=>{},8049:()=>{},7902:()=>{},231:()=>{},9225:()=>{},9577:()=>{}},t={};function a(e){var n=t[e];if(void 0!==n)return n.exports;var i=t[e]={exports:{}};return o[e](i,i.exports,a),i.exports}a.m=o,e=[],a.O=(o,t,n,i)=>{if(!t){var r=1/0;for(d=0;d<e.length;d++){for(var[t,n,i]=e[d],s=!0,l=0;l<t.length;l++)(!1&i||r>=i)&&Object.keys(a.O).every((e=>a.O[e](t[l])))?t.splice(l--,1):(s=!1,i<r&&(r=i));if(s){e.splice(d--,1);var c=n();void 0!==c&&(o=c)}}return o}i=i||0;for(var d=e.length;d>0&&e[d-1][2]>i;d--)e[d]=e[d-1];e[d]=[t,n,i]},a.o=(e,o)=>Object.prototype.hasOwnProperty.call(e,o),(()=>{var e={2235:0,2035:0,7924:0,2296:0,6940:0,5478:0,2184:0,8987:0,7984:0,1159:0,5443:0,578:0,5376:0,1879:0,449:0,9979:0,4645:0,1391:0,3884:0,7215:0,2375:0,25:0,7807:0,3383:0,3182:0,7405:0,9450:0,7741:0,7014:0,8066:0,508:0,4:0,8286:0,6198:0,2852:0,3986:0,7822:0,7494:0,7703:0,7868:0,7800:0,9558:0,4400:0,2043:0};a.O.j=o=>0===e[o];var o=(o,t)=>{var n,i,[r,s,l]=t,c=0;if(r.some((o=>0!==e[o]))){for(n in s)a.o(s,n)&&(a.m[n]=s[n]);if(l)var d=l(a)}for(o&&o(t);c<r.length;c++)i=r[c],a.o(e,i)&&e[i]&&e[i][0](),e[i]=0;return a.O(d)},t=self.webpackChunk=self.webpackChunk||[];t.forEach(o.bind(null,0)),t.push=o.bind(null,t.push.bind(t))})(),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(8983))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(7902))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(231))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(9225))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(9577))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(9946))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(5387))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(7439))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(4315))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(2409))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(790))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(2981))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(2129))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(9189))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(8807))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(7239))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(4405))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(6611))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(6719))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(691))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(6311))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(6916))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(4061))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(4152))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(481))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(7924))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(5970))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(5052))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(5876))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(7004))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(6109))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(1648))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(4398))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(4168))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(3242))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(4016))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(5118))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(688))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(1247))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(7075))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(5286))),a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(2349)));var n=a.O(void 0,[7924,2296,6940,5478,2184,8987,7984,1159,5443,578,5376,1879,449,9979,4645,1391,3884,7215,2375,25,7807,3383,3182,7405,9450,7741,7014,8066,508,4,8286,6198,2852,3986,7822,7494,7703,7868,7800,9558,4400,2043],(()=>a(8049)));n=a.O(n)})();
+/******/ (() => { // webpackBootstrap
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./platform/plugins/language/resources/js/language-public.js":
+/*!*******************************************************************!*\
+  !*** ./platform/plugins/language/resources/js/language-public.js ***!
+  \*******************************************************************/
+/***/ (() => {
+
+"use strict";
+
+
+$(function () {
+  $('.language-wrapper .dropdown .dropdown-toggle').off('click').on('click', function (event) {
+    event.preventDefault();
+    var _self = $(event.currentTarget);
+    if (_self.hasClass('active')) {
+      _self.closest('.language-wrapper').find('.dropdown .dropdown-menu').hide();
+      _self.removeClass('active');
+    } else {
+      _self.closest('.language-wrapper').find('.dropdown .dropdown-menu').show();
+      _self.addClass('active');
+    }
+  });
+  $(document).on('click', function (event) {
+    var _self = $(event.currentTarget);
+    if (_self.closest('.language-wrapper').length === 0) {
+      _self.closest('.language-wrapper').find('.dropdown .dropdown-menu').hide();
+      _self.closest('.language-wrapper').find('.dropdown .dropdown-toggle').removeClass('active');
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./platform/themes/miranda/assets/js/main.js":
+/*!***************************************************!*\
+  !*** ./platform/themes/miranda/assets/js/main.js ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
+
+/*---------------------------
+	JS INDEX
+	===================
+	01. Main Menu
+	02. Banner Slider
+	03. ROOM Slider(Big)
+	04. Testimonial Slider
+	05. Latest Post Slider
+	06. Feature Room Slider
+	07. CounterUp
+	08. Instagram Feed Slider
+	09. Food Menu Slider
+	10. Gallery Sliders & Popup
+	11. Room Slider Two
+	12. Banner Image Slider
+	13. offCanvas Active
+	14. init extra plugin
+	15. Active Gallery And Video Popup
+	16. Search Form
+	17. Preloader
+	18. Back to top
+	19. Sticky header
+
+-----------------------------*/
+
+var mirandaDoc;
+(function ($) {
+  'use strict';
+
+  var isRTL = $('body').prop('dir') === 'rtl';
+  mirandaDoc = {
+    init: function init() {
+      this.mainMenu();
+      this.bannerSlider();
+      this.roomSlider();
+      this.testimonialSlider();
+      this.latestPostlider();
+      this.featureRoom();
+      this.roomDetailsSlider();
+      this.counterToUp();
+      this.instaFeedSlider();
+      this.menuSlider();
+      this.gallery();
+      this.roomSliderTwo();
+      this.bannerImgSlider();
+      this.offCanvas();
+      this.extraPlugin();
+      this.popUpExtra();
+      this.searchForm();
+    },
+    //===== 01. Main Menu
+    mainMenu: function mainMenu() {
+      // Variables
+      var var_window = $(window),
+        navContainer = $('.nav-container'),
+        pushedWrap = $('.nav-pushed-item'),
+        pushItem = $('.nav-push-item'),
+        pushedHtml = pushItem.html(),
+        pushBlank = '',
+        navbarToggler = $('.navbar-toggler'),
+        navMenu = $('.nav-menu'),
+        navMenuLi = $('.nav-menu ul li'),
+        closeIcon = $('.navbar-close');
+
+      // navbar toggler
+      navbarToggler.on('click', function () {
+        navbarToggler.toggleClass('active');
+        navMenu.toggleClass('menu-on');
+        $('body').toggleClass('menu-open', navMenu.hasClass('menu-on'));
+      });
+
+      // close icon
+      closeIcon.on('click', function () {
+        navMenu.removeClass('menu-on');
+        navbarToggler.removeClass('active');
+        $('body').removeClass('menu-open');
+      });
+
+      // adds toggle button to li items that have children
+      navMenu.find('li a').each(function () {
+        if ($(this).next().length > 0) {
+          $(this).parent('li').append('<span class="dd-trigger"><i class="fal fa-angle-down"></i></span>');
+        }
+      });
+
+      // expands the dropdown menu on each click
+      navMenu.find('li .dd-trigger').on('click', function (e) {
+        e.preventDefault();
+        $(this).parent('li').children('ul').stop(true, true).slideToggle(350);
+        $(this).parent('li').toggleClass('active');
+      });
+
+      // check browser width in real-time
+      function breakpointCheck() {
+        navContainer.addClass('breakpoint-on');
+        pushedWrap.html(pushedHtml);
+        pushItem.hide();
+      }
+      breakpointCheck();
+      var_window.on('resize', function () {
+        breakpointCheck();
+      });
+    },
+    //===== 02. Banner Slider
+    bannerSlider: function bannerSlider() {
+      var bannerSliderOne = $('#bannerSlider');
+      bannerSliderOne.on('init', function () {
+        var $firstAnimatingElements = $('.single-banner:first-child').find('[data-animation]');
+        doAnimations($firstAnimatingElements);
+      });
+      bannerSliderOne.on('beforeChange', function (e, slick, currentSlide, nextSlide) {
+        var $animatingElements = $('.single-banner[data-slick-index="' + nextSlide + '"]').find('[data-animation]');
+        doAnimations($animatingElements);
+      });
+
+      // active banner slider
+      bannerSliderOne.slick({
+        rtl: isRTL,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        dots: false,
+        fade: true,
+        arrows: false,
+        prevArrow: '<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',
+        nextArrow: '<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>'
+      });
+
+      // Do for slider animation
+      function doAnimations(elements) {
+        var animationEndEvents = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        elements.each(function () {
+          var $this = $(this);
+          var $animationDelay = $this.data('delay');
+          var $animationType = 'animated ' + $this.data('animation');
+          $this.css({
+            'animation-delay': $animationDelay,
+            '-webkit-animation-delay': $animationDelay
+          });
+          $this.addClass($animationType).one(animationEndEvents, function () {
+            $this.removeClass($animationType);
+          });
+        });
+      }
+    },
+    //===== 03. ROOM Slider (On Home Page One)
+    roomSlider: function roomSlider() {
+      var sliderImg = $('.rooms-slider-one'),
+        sliderContent = $('.room-content-slider'),
+        countStatus = $('.slider-count'),
+        countBig = $('.slider-count-big');
+      sliderImg.slick({
+        rtl: isRTL,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: false,
+        dots: false,
+        centerMode: true,
+        centerPadding: '6%',
+        asNavFor: sliderContent,
+        responsive: [{
+          breakpoint: 1600,
+          settings: {
+            slidesToShow: 2
+          }
+        }, {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 1,
+            centerPadding: '15%'
+          }
+        }]
+      });
+      sliderContent.slick({
+        rtl: isRTL,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: false,
+        dots: true,
+        asNavFor: sliderImg
+      });
+      sliderContent.on('init reInit afterChange', function (event, slick, currentSlide) {
+        if (!slick.$dots) {
+          return;
+        }
+        var i = (currentSlide ? currentSlide : 0) + 1;
+        var statusText = i > 10 ? i : '0' + i;
+        countStatus.html('<span class="current">' + statusText + '</span>/' + slick.$dots[0].children.length);
+        countBig.html('<span >' + statusText + '</span> ');
+      });
+    },
+    //===== 04. Testimonial Slider
+    testimonialSlider: function testimonialSlider() {
+      var tslider = $('.testimonial-slider');
+      tslider.slick({
+        rtl: isRTL,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: false,
+        dots: true,
+        responsive: [{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2
+          }
+        }, {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1
+          }
+        }]
+      });
+    },
+    //===== 05. Latest Post Slider
+    latestPostlider: function latestPostlider() {
+      var tslider = $('.latest-post-slider');
+      var arrows = $('.latest-post-arrow');
+      tslider.slick({
+        rtl: isRTL,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: true,
+        dots: false,
+        prevArrow: '<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',
+        nextArrow: '<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',
+        appendArrows: arrows,
+        responsive: [{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2
+          }
+        }, {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1
+          }
+        }]
+      });
+    },
+    //===== 06. Feature Room Slider
+    featureRoom: function featureRoom() {
+      var fslider = $('.feature-room-slider');
+      var arrows = $('.feature-room-arrow');
+      fslider.slick({
+        rtl: isRTL,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: true,
+        dots: false,
+        prevArrow: '<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',
+        nextArrow: '<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',
+        appendArrows: arrows,
+        responsive: [{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2
+          }
+        }, {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 1
+          }
+        }]
+      });
+    },
+    //===== 07. CounterUp
+    counterToUp: function counterToUp() {
+      $('.counter-box').bind('inview', function (event, visible) {
+        if (visible) {
+          $(this).find('.counter').each(function () {
+            var $this = $(this);
+            $({
+              Counter: 0
+            }).animate({
+              Counter: $this.text()
+            }, {
+              duration: 2000,
+              easing: 'swing',
+              step: function step() {
+                $this.text(Math.ceil(this.Counter));
+              }
+            });
+          });
+          $(this).unbind('inview');
+        }
+      });
+    },
+    //===== 08. Instagram Feed Slider
+    instaFeedSlider: function instaFeedSlider() {
+      var tslider = $('.instagram-slider');
+      tslider.slick({
+        rtl: isRTL,
+        slidesToShow: 6,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: false,
+        dots: false,
+        responsive: [{
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 4
+          }
+        }, {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 3
+          }
+        }, {
+          breakpoint: 576,
+          settings: {
+            slidesToShow: 2
+          }
+        }]
+      });
+
+      // Init magnificPopup on Instagram Gallery
+      if (jQuery().magnificPopup) {
+        $('.instagram-slider').each(function () {
+          // the containers for all your galleries
+          var additionalImages = $('.image a.insta-popup').not('.slick-slide.slick-cloned a.insta-popup');
+          additionalImages.magnificPopup({
+            type: 'image',
+            gallery: {
+              enabled: true
+            },
+            mainClass: 'mfp-fade'
+          });
+        });
+      }
+    },
+    //===== 09. Food Menu SLider
+    menuSlider: function menuSlider() {
+      var mslider = $('.menu-slider');
+      var arrows = $('.menu-slider-arrow');
+      mslider.slick({
+        rtl: isRTL,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: true,
+        dots: false,
+        prevArrow: '<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',
+        nextArrow: '<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',
+        appendArrows: arrows
+      });
+    },
+    //===== 10. Gallery Sliders & Popup
+    gallery: function gallery() {
+      var gslider = $('.gallery-slider');
+      gslider.slick({
+        rtl: isRTL,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: false,
+        dots: false,
+        responsive: [{
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2
+          }
+        }, {
+          breakpoint: 500,
+          settings: {
+            slidesToShow: 1
+          }
+        }]
+      });
+
+      // Init magnificPopup on Menu Gallery
+      if (jQuery().magnificPopup) {
+        $('.gallery-slider').each(function () {
+          // the containers for all your galleries
+          var additionalImages = $('.slick-slide a.gallery-popup').not('.slick-slide.slick-cloned a.gallery-popup');
+          additionalImages.magnificPopup({
+            type: 'image',
+            gallery: {
+              enabled: true
+            },
+            mainClass: 'mfp-fade'
+          });
+        });
+      }
+    },
+    //===== 11. Room Slider Two (on Home Page Three)
+    roomSliderTwo: function roomSliderTwo() {
+      var sliderTwo = $('.rooms-slider-two');
+      sliderTwo.slick({
+        rtl: isRTL,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: false,
+        infinite: true,
+        autoplay: false,
+        autoplaySpeed: 4000,
+        arrows: true,
+        dots: false,
+        centerMode: true,
+        centerPadding: '28%',
+        prevArrow: '<div class="slick-arrow prev-arrow"><i class="fal fa-arrow-left"></i></div>',
+        nextArrow: '<div class="slick-arrow next-arrow"><i class="fal fa-arrow-right"></i></div>',
+        responsive: [{
+          breakpoint: 1600,
+          settings: {
+            centerPadding: '20%'
+          }
+        }, {
+          breakpoint: 992,
+          settings: {
+            centerPadding: '15%'
+          }
+        }, {
+          breakpoint: 768,
+          settings: {
+            centerPadding: '10%'
+          }
+        }, {
+          breakpoint: 576,
+          settings: {
+            centerPadding: '5%'
+          }
+        }]
+      });
+    },
+    //===== Room Details Slider
+    roomDetailsSlider: function roomDetailsSlider() {
+      var roomDetailsSlider = $('.room-details-slider');
+      if (roomDetailsSlider.length) {
+        var roomDetailsSliderNav = $('.room-details-slider-nav');
+        roomDetailsSlider.slick({
+          rtl: isRTL,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          autoplay: false,
+          arrows: false,
+          dots: false,
+          asNavFor: '.room-details-slider-nav'
+        });
+        roomDetailsSlider.lightGallery({
+          selector: 'a',
+          thumbnail: true,
+          share: false,
+          fullScreen: false,
+          autoplay: false,
+          autoplayControls: false,
+          actualSize: false
+        });
+        roomDetailsSliderNav.slick({
+          rtl: isRTL,
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          asNavFor: '.room-details-slider',
+          dots: false,
+          arrows: false,
+          centerMode: false,
+          focusOnSelect: true,
+          responsive: [{
+            breakpoint: 1200,
+            settings: {
+              slidesToShow: 4
+            }
+          }, {
+            breakpoint: 576,
+            settings: {
+              slidesToShow: 3
+            }
+          }]
+        });
+      }
+    },
+    //===== 12. Banner Image Slider
+    bannerImgSlider: function bannerImgSlider() {
+      var sliderOne = $('.hero-slider-one');
+      sliderOne.slick({
+        rtl: isRTL,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        fade: true,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        arrows: false,
+        dots: false
+      });
+    },
+    //===== 13. offCanvas Active
+    offCanvas: function offCanvas() {
+      // Set Click Function For open
+      $('#offCanvasBtn').on('click', function (e) {
+        e.preventDefault();
+        $('.offcanvas-wrapper').addClass('show-offcanvas');
+        $('.offcanvas-overly').addClass('show-overly');
+      });
+      // Set Click Function For Close
+      $('.offcanvas-close').on('click', function (e) {
+        e.preventDefault();
+        $('.offcanvas-overly').removeClass('show-overly');
+        $('.offcanvas-wrapper').removeClass('show-offcanvas');
+      });
+      // Set Click Function on Overly For open on
+      $('.offcanvas-overly').on('click', function () {
+        $(this).removeClass('show-overly');
+        $('.offcanvas-wrapper').removeClass('show-offcanvas');
+      });
+    },
+    //===== 14. init extra plugin
+    extraPlugin: function extraPlugin() {
+      // init nice selects
+      $('select:not(.ignore-nice-select)').niceSelect();
+
+      // init datepicker
+      this.initDatePicker();
+
+      // init wow js
+      new WOW().init();
+    },
+    initDatePicker: function initDatePicker() {
+      if ($('.date-picker').length > 0) {
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        $('.date-picker').each(function () {
+          var options = {
+            autoclose: true,
+            startDate: today
+          };
+          var language = $(this).data('locale');
+          if (language) {
+            options.language = language;
+          }
+          var dateFormat = $(this).data('date-format');
+          if (dateFormat) {
+            options.format = dateFormat;
+          }
+          $(this).datepicker(options);
+        });
+        $(document).on('change', '#arrival-date', function () {
+          var date = $(this).datepicker('getDate');
+          date.setTime(date.getTime() + 1000 * 60 * 60 * 24);
+          $('#departure-date').datepicker('setDate', date).datepicker('option', 'startDate', date);
+        });
+      }
+    },
+    //===== 15. Active Gallery And Video Popup
+    popUpExtra: function popUpExtra() {
+      // Init magnificPopup on Popup Video
+      if (jQuery().magnificPopup) {
+        $('.popup-video').magnificPopup({
+          type: 'iframe'
+        });
+
+        // Init magnificPopup on Gallery
+        $('.gallery-loop .popup-image').magnificPopup({
+          type: 'image',
+          gallery: {
+            enabled: true
+          },
+          mainClass: 'mfp-fade'
+        });
+      }
+    },
+    //===== 16. Search Form
+    searchForm: function searchForm() {
+      // Set Click Function For open
+      $('#searchBtn').on('click', function (e) {
+        e.preventDefault();
+        $('.search-form').slideToggle(350);
+        $(this).toggleClass('active');
+      });
+    }
+  };
+
+  // Document Ready
+  $(document).ready(function () {
+    mirandaDoc.init();
+  });
+  $(document).ready(function () {
+    $('.room-book').on('click', function (e) {
+      e.preventDefault();
+      var confirmbtn = $(this).next('.confirm-btn');
+      var itembox = $(this).parent().prev('.item-boxs');
+      confirmbtn.toggleClass('d-flex');
+      itembox.slideToggle('d-flex');
+    });
+    $('.remove-item').on('click', function (e) {
+      e.preventDefault();
+      var hideitem = $(this).closest('.item-boxs');
+      var confirmbtn = hideitem.next('.actions').find('.confirm-btn');
+      hideitem.hide();
+      confirmbtn.toggleClass('d-flex');
+    });
+  });
+
+  // Window Load
+  $(window).on('load', function () {
+    //===== 17. Preloader
+    $('.preloader').fadeOut('slow', function () {
+      $(this).remove();
+    });
+
+    //===== 18. Back to top
+    $('#backToTop').on('click', function (e) {
+      e.preventDefault();
+      $('html, body').animate({
+        scrollTop: '0'
+      }, 1200);
+    });
+  });
+
+  // Window Scroll
+  $(window).on('scroll', function () {
+    //===== 19. Sticky header
+    var scroll = $(window).scrollTop();
+    if (scroll < 150) {
+      $('.sticky-header').removeClass('sticky-active');
+    } else {
+      $('.sticky-header').addClass('sticky-active');
+    }
+
+    //===== 20. Scroll Event on back to top
+    if (scroll > 300) $('#backToTop').addClass('active');
+    if (scroll < 300) $('#backToTop').removeClass('active');
+  });
+  $(document).ready(function () {
+    $('.service-item').on('change', function () {
+      var services = [];
+      $('.service-item:checked').each(function (i, el) {
+        services[i] = $(el).val();
+      });
+      $('body').css('cursor', 'progress');
+      $('.custom-checkbox label').css('cursor', 'progress');
+      var $checkoutButton = $(document).find('.payment-checkout-btn');
+      $checkoutButton.prop('disabled', true);
+      var $selectedPaymentMethod = $(document).find('.payment-checkout-form .list_payment_method input[name="payment_method"]:checked').val();
+      $.ajax({
+        type: 'GET',
+        cache: false,
+        url: '/ajax/calculate-amount',
+        data: {
+          room_id: $('input[name=room_id]').val(),
+          start_date: $('input[name=start_date]').val(),
+          end_date: $('input[name=end_date]').val(),
+          rooms: $('input[name=rooms]').val(),
+          services: services
+        },
+        success: function success(res) {
+          if (!res.error) {
+            $('.total-amount-text').text(res.data.total_amount);
+            $('.amount-text').text(res.data.sub_total);
+            $('.tax-text').text(res.data.tax_amount);
+            $('.discount-text').text(res.data.discount_amount);
+            $('input[name=amount]').val(res.data.amount_raw);
+          }
+          $('body').css('cursor', 'default');
+          $('.custom-checkbox label').css('cursor', 'pointer');
+          $('.payment-checkout-form .list_payment_method').load(window.location.href + ' .payment-checkout-form .list_payment_method > *', function () {
+            $checkoutButton.prop('disabled', false);
+            $(document).find('.payment-checkout-form .list_payment_method input[value="' + $selectedPaymentMethod + '"]').prop('checked', true).trigger('change');
+          });
+        },
+        error: function error() {
+          $('body').css('cursor', 'default');
+          $('.custom-checkbox label').css('cursor', 'pointer');
+        }
+      });
+    });
+  });
+  var showError = function showError(message) {
+    window.showAlert('alert-danger', message);
+  };
+  var showSuccess = function showSuccess(message) {
+    window.showAlert('alert-success', message);
+  };
+  var handleError = function handleError(data) {
+    if (typeof data.errors !== 'undefined' && data.errors.length) {
+      handleValidationError(data.errors);
+    } else if (typeof data.responseJSON !== 'undefined') {
+      if (typeof data.responseJSON.errors !== 'undefined') {
+        if (data.status === 422) {
+          handleValidationError(data.responseJSON.errors);
+        }
+      } else if (typeof data.responseJSON.message !== 'undefined') {
+        showError(data.responseJSON.message);
+      } else {
+        $.each(data.responseJSON, function (index, el) {
+          $.each(el, function (key, item) {
+            showError(item);
+          });
+        });
+      }
+    } else {
+      showError(data.statusText);
+    }
+  };
+  var handleValidationError = function handleValidationError(errors) {
+    var message = '';
+    $.each(errors, function (index, item) {
+      if (message !== '') {
+        message += '<br />';
+      }
+      message += item;
+    });
+    showError(message);
+  };
+  window.showAlert = function (messageType, message) {
+    if (messageType && message !== '') {
+      var alertId = Math.floor(Math.random() * 1000);
+      var html = "<div class=\"alert ".concat(messageType, " alert-dismissible\" id=\"").concat(alertId, "\">\n                <span class=\"close fa fa-times-circle\" data-dismiss=\"alert\" aria-label=\"close\"></span>\n                <i class=\"fas fa-") + (messageType === 'alert-success' ? 'check-circle' : 'exclamation-circle') + " message-icon\"></i>\n                ".concat(message, "\n            </div>");
+      $('#alert-container').append(html).ready(function () {
+        window.setTimeout(function () {
+          $("#alert-container #".concat(alertId)).remove();
+        }, 6000);
+      });
+    }
+  };
+  var refreshCoupon = function refreshCoupon() {
+    var services = [];
+    $('.service-item:checked').each(function (i, el) {
+      services[i] = $(el).val();
+    });
+    var $checkoutButton = $(document).find('.payment-checkout-btn');
+    $checkoutButton.prop('disabled', true);
+    var $selectedPaymentMethod = $(document).find('.payment-checkout-form .list_payment_method input[name="payment_method"]:checked').val();
+    $.ajax({
+      url: '/ajax/calculate-amount',
+      type: 'GET',
+      data: {
+        room_id: $('input[name=room_id]').val(),
+        start_date: $('input[name=start_date]').val(),
+        end_date: $('input[name=end_date]').val(),
+        rooms: $('input[name=rooms]').val(),
+        services: services
+      },
+      success: function success(_ref) {
+        var _$$val;
+        var error = _ref.error,
+          message = _ref.message,
+          data = _ref.data;
+        if (error) {
+          showError(message);
+          return;
+        }
+        $('.total-amount-text').text(data.total_amount);
+        $('input[name=amount]').val(data.amount_raw);
+        $('.amount-text').text(data.sub_total);
+        $('.discount-text').text(data.discount_amount);
+        $('.tax-text').text(data.tax_amount);
+        $('.payment-checkout-form .list_payment_method').load(window.location.href + ' .payment-checkout-form .list_payment_method > *', function () {
+          $checkoutButton.prop('disabled', false);
+          $(document).find('.payment-checkout-form .list_payment_method input[value="' + $selectedPaymentMethod + '"]').prop('checked', true).trigger('change');
+        });
+        var refreshUrl = $('.order-detail-box').data('refresh-url');
+        $.ajax({
+          url: refreshUrl,
+          type: 'GET',
+          data: {
+            coupon_code: (_$$val = $('input[name=coupon_hidden]').val()) !== null && _$$val !== void 0 ? _$$val : $('input[name=coupon_code]').val()
+          },
+          success: function success(_ref2) {
+            var error = _ref2.error,
+              message = _ref2.message,
+              data = _ref2.data;
+            if (error) {
+              showError(message);
+              return;
+            }
+            $('.order-detail-box').html(data);
+          },
+          error: function error(_error) {
+            handleError(_error);
+          }
+        });
+      },
+      error: function error(_error2) {
+        handleError(_error2);
+      }
+    });
+  };
+  $(document).on('click', '.toggle-coupon-form', function () {
+    return $(document).find('.coupon-form').toggle('fast');
+  }).on('click', '.apply-coupon-code', function (e) {
+    e.preventDefault();
+    var $button = $(e.currentTarget);
+    $.ajax({
+      url: $button.data('url'),
+      type: 'POST',
+      data: {
+        coupon_code: $('input[name=coupon_code]').val(),
+        _token: $button.closest('form').find('input[name="_token"]').val()
+      },
+      beforeSend: function beforeSend() {
+        $button.addClass('button-loading');
+      },
+      success: function success(_ref3) {
+        var error = _ref3.error,
+          message = _ref3.message;
+        if (error) {
+          showError(message);
+          return;
+        }
+        showSuccess(message);
+        refreshCoupon();
+      },
+      error: function error(_error3) {
+        handleError(_error3);
+      },
+      complete: function complete() {
+        $button.removeClass('button-loading');
+      }
+    });
+  }).on('click', '.remove-coupon-code', function (e) {
+    e.preventDefault();
+    var $button = $(e.currentTarget);
+    $.ajax({
+      url: $button.data('url'),
+      type: 'POST',
+      data: {
+        _token: $button.closest('form').find('input[name="_token"]').val()
+      },
+      beforeSend: function beforeSend() {
+        $button.addClass('button-loading');
+      },
+      success: function success(_ref4) {
+        var message = _ref4.message,
+          error = _ref4.error;
+        if (error) {
+          showError(message);
+          return;
+        }
+        showSuccess(message);
+        refreshCoupon();
+      },
+      error: function error(_error4) {
+        handleError(_error4);
+      },
+      complete: function complete() {
+        $button.removeClass('button-loading');
+      }
+    });
+  });
+  __webpack_require__(/*! ../../../../../platform/plugins/language/resources/js/language-public */ "./platform/plugins/language/resources/js/language-public.js");
+  $('a.down-arrow').on('click', function (event) {
+    event.preventDefault();
+    var targetID = $(event.currentTarget).attr('href');
+    $([document.documentElement, document.body]).animate({
+      scrollTop: $(targetID).offset().top
+    }, 1000);
+  });
+  $(document).on('click', '[data-bb-toggle="decrement-room"]', function (e) {
+    var currentTarget = $(e.currentTarget);
+    var $input = currentTarget.closest('.input-quantity').find('input');
+    var inputName = $input.prop('name');
+    var min = parseInt($input.prop('min'));
+    var value = parseInt($input.val());
+    if (value > min) {
+      $input.val(value - 1);
+      $("[data-bb-toggle=\"filter-".concat(inputName, "-count\"]")).text(value - 1);
+    }
+  });
+  $(document).on('click', '[data-bb-toggle="increment-room"]', function (e) {
+    var currentTarget = $(e.currentTarget);
+    var $input = currentTarget.closest('.input-quantity').find('input');
+    var inputName = $input.prop('name');
+    var max = parseInt($input.prop('max'));
+    var value = parseInt($input.val());
+    if (value < max) {
+      $input.val(value + 1);
+      $("[data-bb-toggle=\"filter-".concat(inputName, "-count\"]")).text(value + 1);
+    }
+  }).on('click', '[data-bb-toggle="toggle-guests-and-rooms"]', function (e) {
+    var currentTarget = $(e.currentTarget);
+    var $target = $(currentTarget.data('target'));
+    $target.toggle('fast');
+  });
+})(jQuery);
+
+/***/ }),
+
+/***/ "./platform/themes/miranda/assets/sass/style.scss":
+/*!********************************************************!*\
+  !*** ./platform/themes/miranda/assets/sass/style.scss ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ })
+
+/******/ 	});
+/************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
+/************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	(() => {
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/make namespace object */
+/******/ 	(() => {
+/******/ 		// define __esModule on exports
+/******/ 		__webpack_require__.r = (exports) => {
+/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 			}
+/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/themes/miranda/js/main": 0,
+/******/ 			"themes/miranda/css/style": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["themes/miranda/css/style"], () => (__webpack_require__("./platform/themes/miranda/assets/js/main.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["themes/miranda/css/style"], () => (__webpack_require__("./platform/themes/miranda/assets/sass/style.scss")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
+/******/ 	
+/******/ })()
+;

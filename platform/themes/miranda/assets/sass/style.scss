@@ -51,13 +51,6 @@
 
 -----------------------------------------------------------------------------------*/
 
-@media (max-width: 991px) {
-    .nav-push-item,
-    .nav-menu {
-        display: none;
-    }
-}
-
 @import 'default';
 @import 'variables';
 @import 'mixin';

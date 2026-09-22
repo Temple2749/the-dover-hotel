@@ -1,4 +1,8 @@
 /*=======  HEADER CSS  =======*/
+body.menu-open {
+    overflow: hidden;
+}
+
 header {
     &.header-absolute {
         position: absolute;
@@ -305,13 +309,18 @@ header {
                 transition-duration: 500ms;
                 padding: 0;
                 box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-                display: block;
+                display: block !important;
                 overflow-x: hidden;
                 overflow-y: auto;
                 -webkit-overflow-scrolling: touch;
                 overscroll-behavior: contain;
                 padding-top: 70px;
                 .menu-items {
+                    padding-bottom: 32px;
+                    ul.auth-menu {
+                        margin-bottom: 32px;
+                    }
+
                     ul li {
                         display: block;
                         a {

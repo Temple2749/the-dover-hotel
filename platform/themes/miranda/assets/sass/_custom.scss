@@ -963,6 +963,41 @@ body[dir='ltr'] {
     }
 }
 
+.booking-information-page {
+    position: relative;
+    z-index: 1;
+
+    .booking-information-content {
+        min-width: 0;
+        overflow-x: auto;
+        overflow-wrap: anywhere;
+        padding-top: 16px;
+
+        .datagrid,
+        .table {
+            min-width: 0;
+        }
+
+        img {
+            height: auto;
+        }
+    }
+
+    @media #{$md} {
+        padding-top: 90px;
+        padding-bottom: 90px;
+    }
+
+    @media #{$sm} {
+        padding-top: 70px;
+        padding-bottom: 70px;
+
+        .booking-information-content {
+            padding-top: 8px;
+        }
+    }
+}
+
 .auth-card {
     form {
         .auth-input-icon {
