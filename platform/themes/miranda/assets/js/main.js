@@ -601,6 +601,8 @@ let mirandaDoc
 
         //===== 13. offCanvas Active
         offCanvas() {
+            const offcanvasButton = $('#offCanvasBtn')
+
             // Set Click Function For open
             $('#offCanvasBtn').on('click', function (e) {
                 e.preventDefault()

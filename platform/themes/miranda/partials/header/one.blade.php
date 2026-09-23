@@ -1,40 +1,23 @@
 <header class="header-absolute sticky-header @if (url()->current() == BaseHelper::getHomepageUrl()) header-two @else inner-page @endif">
     <div class="container container-custom-one">
         <div class="nav-container d-flex align-items-center justify-content-between breakpoint-on">
+            <div class="toggle">
+                <a
+                    id="offCanvasBtn"
+                    href="#"
+                    aria-expanded="false"
+                    aria-controls="miranda-offcanvas"
+                    title="menu"
+                ><i class="fal fa-bars"></i></a>
+            </div>
             <div class="nav-menu d-lg-flex align-items-center">
 
                 <div class="navbar-close">
                     <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                 </div>
 
-                <div class="toggle">
-                    <a
-                        id="offCanvasBtn"
-                        href="#"
-                        aria-expanded="false"
-                        aria-controls="miranda-offcanvas"
-                        title="menu"
-                    ><i class="fal fa-bars"></i></a>
-                </div>
                 <div class="menu-items">
                     {!! Menu::renderMenuLocation('header-menu', ['view' => 'menu']) !!}
-                    <ul class="auth-menu">
-                        @if (auth('customer')->check())
-                            <li>
-                                <a href="{{ route('customer.overview') }}">{{ __('My Account') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('customer.logout') }}">{{ __('Logout') }}</a>
-                            </li>
-                        @else
-                            <li>
-                                <a href="{{ route('customer.login') }}">{{ __('Login') }}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('customer.register') }}">{{ __('Register') }}</a>
-                            </li>
-                        @endif
-                    </ul>
                 </div>
 
                 <div class="nav-pushed-item"></div>
@@ -78,9 +61,6 @@
                 </div>
             </div>
 
-            <div class="navbar-toggler">
-                <span></span><span></span><span></span>
-            </div>
         </div>
     </div>
 </header>
