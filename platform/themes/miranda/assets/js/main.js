@@ -120,6 +120,7 @@ let mirandaDoc
                     navMenu.removeClass('menu-on')
                     navbarToggler.removeClass('active')
                     $('body').removeClass('menu-open')
+                    $('.sticky-header').removeClass('sticky-active')
 
                     pushedWrap.html(pushBlank)
                     pushItem.show()
@@ -756,16 +757,12 @@ let mirandaDoc
     // Window Scroll
     $(window).on('scroll', function () {
         //===== 19. Sticky header
-        let scroll = $(window).scrollTop()
-        if (scroll < 150) {
-            $('.sticky-header').removeClass('sticky-active')
-        } else {
-            $('.sticky-header').addClass('sticky-active')
-        }
+        const scroll = $(window).scrollTop()
+        const isHomePage = $('body').hasClass('home') || window.location.pathname === '/' || /\/index\.php$/.test(window.location.pathname)
+        const isMobileViewport = $(window).width() <= 991
+        const shouldStick = !isHomePage && !isMobileViewport && scroll > 150
 
-        //===== 20. Scroll Event on back to top
-        if (scroll > 300) $('#backToTop').addClass('active')
-        if (scroll < 300) $('#backToTop').removeClass('active')
+        $('.sticky-header').toggleClass('sticky-active', shouldStick)
     })
 
     $(document).ready(function () {

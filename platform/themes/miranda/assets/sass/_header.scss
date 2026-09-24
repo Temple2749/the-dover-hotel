@@ -307,6 +307,7 @@ header {
                 z-index: 9999;
                 width: min(300px, 100vw);
                 max-width: 100vw;
+                min-width: 0;
                 height: 100vh;
                 height: 100dvh;
                 max-height: 100dvh;
@@ -758,7 +759,7 @@ header {
 /*=======  Off canvas menu  =======*/
 .offcanvas-wrapper {
     position: fixed;
-    width: 450px;
+    width: min(450px, 100vw);
     top: 0;
     height: 100dvh;
     left: 0;
@@ -794,9 +795,9 @@ header {
     }
     .offcanvas-widget {
         background-color: $white;
-        width: 100%;
+        width: min(100vw, 450px);
         height: 100dvh;
-        padding: 70px 40px 80px;
+        padding: 70px 20px 80px;
         position: relative;
         z-index: 99;
         overflow-x: hidden;
@@ -804,12 +805,52 @@ header {
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
 
+        @media #{$xsm} {
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+
         a.offcanvas-close {
             position: absolute;
-            right: 30px;
-            top: 30px;
+            right: 18px;
+            top: 18px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid rgba($primary-color, 0.25);
+            background: rgba($primary-color, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 28px;
+            line-height: 1;
             color: $primary-color;
+            z-index: 20;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: $primary-color;
+                color: $white;
+            }
+
+            @media #{$md} {
+                right: 16px;
+                top: 16px;
+            }
+
+            @media #{$sm} {
+                right: 14px;
+                top: 14px;
+            }
+
+            @media #{$xsm} {
+                right: 12px;
+                top: 12px;
+                width: 40px;
+                height: 40px;
+                font-size: 24px;
+            }
         }
 
         .widget {

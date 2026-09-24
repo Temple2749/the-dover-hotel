@@ -72,7 +72,7 @@ return [
             }
 
             $theme->asset()->container('footer')->usePath()->add('wow', 'js/wow.min.js');
-            $theme->asset()->container('footer')->usePath()->add('main', 'js/main.js', ['bootstrap-datepicker-locale'], [], '1.39.10');
+            $theme->asset()->container('footer')->usePath()->add('main', 'js/main.js', ['bootstrap-datepicker-locale'], [], '1.39.11');
 
             if (function_exists('shortcode')) {
                 $theme->composer(['page', 'post', 'hotel.room'], function (View $view) {
