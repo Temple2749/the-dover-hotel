@@ -1,4 +1,4 @@
-<section class="breadcrumb-area" style="background-image: url({{ theme_option('news_banner') ? RvMedia::getImageUrl(theme_option('news_banner')) : Theme::asset()->url('img/bg/banner.jpg') }});">
+﻿<section class="breadcrumb-area" style="background-image: url({{ theme_option('news_banner') ? RvMedia::getImageUrl(theme_option('news_banner')) : Theme::asset()->url('img/bg/banner.jpg') }});">
     <div class="container">
         <div class="breadcrumb-text">
             <span>{{ $post->name }}</span>
@@ -45,7 +45,7 @@
                                 <h5>{{ __('Social Share') }}</h5>
                                 <ul>
                                         <li><a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(url()->current()) }}&title={{ rawurldecode($post->description) }}" target="_blank" title="Share on Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                    <li><a href="https://twitter.com/intent/tweet?url={{ urlencode(url()->current()) }}&text={{ rawurldecode($post->description) }}" target="_blank" title="Share on Twitter"><i class="fab fa-twitter"></i></a></li>
+                                    <li><a href="https://x.com/intent/post?url={{ urlencode(url()->current()) }}&text={{ rawurldecode($post->description) }}" target="_blank" title="Share on X" aria-label="Share on X"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.963 6.817H1.684l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"/></svg></a></li>
                                     <li><a href="https://www.linkedin.com/shareArticle?mini=true&url={{ urlencode(url()->current()) }}&summary={{ rawurldecode($post->description) }}&source=Linkedin" title="Share on Linkedin" target="_blank"><i class="fab fa-linkedin"></i></a></li>
                                 </ul>
                             </div>
@@ -87,3 +87,5 @@
         </div>
     </div>
 </section>
+
+
