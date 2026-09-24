@@ -39,7 +39,7 @@ return [
         // this event should call to assign some assets,
         // breadcrumb template.
         'beforeRenderTheme' => function (Theme $theme) {
-            $version = get_cms_version();
+            $version = '1.42.2-miranda';
 
             // You may use this event to set up your assets.
             $theme->asset()->usePath()->add('animate-css', 'css/animate.min.css');
@@ -72,7 +72,7 @@ return [
             }
 
             $theme->asset()->container('footer')->usePath()->add('wow', 'js/wow.min.js');
-            $theme->asset()->container('footer')->usePath()->add('main', 'js/main.js', ['bootstrap-datepicker-locale'], [], '1.39.11');
+            $theme->asset()->container('footer')->usePath()->add('main', 'js/main.js', ['bootstrap-datepicker-locale'], [], '1.42.2-miranda');
 
             if (function_exists('shortcode')) {
                 $theme->composer(['page', 'post', 'hotel.room'], function (View $view) {
