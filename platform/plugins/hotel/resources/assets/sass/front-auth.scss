@@ -58,12 +58,23 @@
         }
 
         .form-check-input {
+            appearance: auto;
+            height: 16px;
             margin-left: -1.5em;
+            width: 16px;
+            vertical-align: middle;
 
             &:checked {
                 background-color: var(--primary-color);
                 border-color: var(--primary-color);
             }
+        }
+
+        .form-check-label {
+            color: #5f6b68;
+            font-size: 13px;
+            line-height: 1.5;
+            vertical-align: middle;
         }
     }
 
