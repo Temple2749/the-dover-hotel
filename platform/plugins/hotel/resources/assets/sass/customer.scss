@@ -635,8 +635,9 @@ html {
 
 .customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item {
     align-items: center;
-    display: flex;
-    gap: 12px;
+    column-gap: 14px;
+    display: grid;
+    grid-template-columns: 28px minmax(0, 1fr);
     line-height: 1.25;
     min-height: 46px;
     padding: 11px 8px;
@@ -669,6 +670,10 @@ html {
     justify-content: center;
     margin: 0;
     width: 28px;
+}
+
+.customer-page .profile-sidebar .profile-usermenu .sidebar-label {
+    min-width: 0;
 }
 
 .customer-page .profile-sidebar .profile-usermenu .sidebar-icon i {
@@ -718,7 +723,6 @@ html {
 .customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item:hover > .sidebar-icon,
 .customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item.active > .sidebar-icon {
     border-color: currentColor;
-    transform: translateX(1px);
 }
 
 .customer-page .profile-sidebar .profile-usermenu li.list-group-item a.active > .sidebar-icon,

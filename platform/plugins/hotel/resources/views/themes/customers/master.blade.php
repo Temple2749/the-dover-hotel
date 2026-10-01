@@ -35,24 +35,24 @@
                         <div class="profile-usermenu">
                             <ul class="list-group">
                                 <li class="list-group-item">
-                                    <a href="{{ route('customer.overview') }}" class="d-inline-block w-100 collection-item @if (Route::currentRouteName() == 'customer.overview') active @endif"><span class="sidebar-icon sidebar-icon-overview"><i class="fa fa-home"></i></span>{{ __('Overview') }}</a>
+                                    <a href="{{ route('customer.overview') }}" class="w-100 collection-item @if (Route::currentRouteName() == 'customer.overview') active @endif"><span class="sidebar-icon sidebar-icon-overview"><i class="fa fa-home"></i></span><span class="sidebar-label">{{ __('Overview') }}</span></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{ route('customer.edit-account') }}" class="d-inline-block w-100 collection-item @if (Route::currentRouteName() == 'customer.edit-account') active @endif"><span class="sidebar-icon sidebar-icon-profile"><i class="fa fa-user"></i></span>{{ __('My Profile') }}</a>
+                                    <a href="{{ route('customer.edit-account') }}" class="w-100 collection-item @if (Route::currentRouteName() == 'customer.edit-account') active @endif"><span class="sidebar-icon sidebar-icon-profile"><i class="fa fa-user"></i></span><span class="sidebar-label">{{ __('My Profile') }}</span></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{ route('customer.change-password') }}" class="d-inline-block w-100 collection-item @if (Route::currentRouteName() == 'customer.change-password') active @endif"><span class="sidebar-icon sidebar-icon-password"><i class="fa fa-lock"></i></span>{{ __('Change password') }}</a>
+                                    <a href="{{ route('customer.change-password') }}" class="w-100 collection-item @if (Route::currentRouteName() == 'customer.change-password') active @endif"><span class="sidebar-icon sidebar-icon-password"><i class="fa fa-lock"></i></span><span class="sidebar-label">{{ __('Change password') }}</span></a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{ route('customer.bookings') }}" class="d-inline-block w-100 collection-item @if (Route::currentRouteName() == 'customer.bookings') active @endif"><span class="sidebar-icon sidebar-icon-bookings"><i class="fa fa-calendar"></i></span>{{ __('My Bookings') }}</a>
+                                    <a href="{{ route('customer.bookings') }}" class="w-100 collection-item @if (Route::currentRouteName() == 'customer.bookings') active @endif"><span class="sidebar-icon sidebar-icon-bookings"><i class="fa fa-calendar"></i></span><span class="sidebar-label">{{ __('My Bookings') }}</span></a>
                                 </li>
                                 @if (HotelHelper::isReviewEnabled())
                                     <li class="list-group-item">
-                                        <a href="{{ route('customer.reviews') }}" class="d-inline-block w-100 collection-item @if (Route::currentRouteName() == 'customer.reviews') active @endif"><span class="sidebar-icon sidebar-icon-reviews"><i class="fa fa-star"></i></span>{{ __('My Reviews') }}</a>
+                                        <a href="{{ route('customer.reviews') }}" class="w-100 collection-item @if (Route::currentRouteName() == 'customer.reviews') active @endif"><span class="sidebar-icon sidebar-icon-reviews"><i class="fa fa-star"></i></span><span class="sidebar-label">{{ __('My Reviews') }}</span></a>
                                     </li>
                                 @endif
                                 <li class="list-group-item">
-                                    <a href="{{ route('customer.logout') }}" class="d-inline-block w-100 collection-item"><span class="sidebar-icon sidebar-icon-logout"><i class="fa fa-sign-out"></i></span>{{ __('Logout') }}</a>
+                                    <a href="{{ route('customer.logout') }}" class="w-100 collection-item"><span class="sidebar-icon sidebar-icon-logout"><i class="fa fa-sign-out"></i></span><span class="sidebar-label">{{ __('Logout') }}</span></a>
                                 </li>
                             </ul>
                         </div>
