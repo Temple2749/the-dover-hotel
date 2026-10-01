@@ -25,7 +25,7 @@ html {
     }
 
     .profile-sidebar {
-        padding: 28px 22px;
+        padding: 20px 16px;
         border: 1px solid #e7e8e4;
         border-radius: 4px;
         color: #263238;
@@ -594,14 +594,14 @@ html {
 
 .customer-page .profile-image {
     margin: 0 auto;
-    max-width: 150px;
+    max-width: 112px;
     position: relative;
 }
 
 .customer-page .profile-image .avatar-view.mt-card-avatar {
     border-radius: 50%;
-    height: 150px;
-    width: 150px;
+    height: 112px;
+    width: 112px;
 }
 
 .customer-page .profile-image > i.avatar-view {
@@ -866,8 +866,17 @@ html {
             justify-content: center;
             margin: 0 0 18px;
             order: 2;
-            padding: 22px;
+            padding: 12px;
             width: 100%;
+        }
+
+        .profile-image {
+            max-width: 88px;
+        }
+
+        .profile-image .avatar-view.mt-card-avatar {
+            height: 88px;
+            width: 88px;
         }
 
         .customer-body .profile-usertitle-name {
@@ -925,9 +934,6 @@ html {
         }
     }
 }
-    cursor: pointer;
-}
-
 .mt-card-avatar-circle {
     border-radius: 50%;
 }
@@ -1015,6 +1021,90 @@ html {
 .avatar-body {
     padding-right: 15px;
     padding-left: 15px;
+}
+
+.crop-avatar .avatar-upload {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr;
+}
+
+.crop-avatar .avatar-upload label {
+    clear: none;
+    float: none;
+    margin: 0;
+    width: auto;
+}
+
+.crop-avatar .avatar-upload input {
+    margin: 0;
+    max-width: 100%;
+}
+
+.crop-avatar .avatar-wrapper {
+    height: min(52vh, 364px);
+    min-height: 220px;
+}
+
+.crop-avatar .avatar-preview-wrapper {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.crop-avatar .avatar-preview {
+    float: none;
+    margin: 0;
+}
+
+.crop-avatar .preview-lg {
+    height: 132px;
+    width: 132px;
+}
+
+.customer-page .custom-booking-table {
+    min-width: 640px;
+}
+
+@media (max-width: 767px) {
+    .crop-avatar .modal-dialog {
+        margin: 0.5rem;
+    }
+
+    .crop-avatar .modal-body {
+        padding: 0.75rem;
+    }
+
+    .crop-avatar .avatar-body {
+        padding: 0;
+    }
+
+    .crop-avatar .avatar-wrapper {
+        height: min(48vh, 300px);
+        min-height: 180px;
+    }
+
+    .crop-avatar .avatar-preview-wrapper {
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .crop-avatar .preview-lg {
+        height: 88px;
+        width: 88px;
+    }
+
+    .crop-avatar .preview-md {
+        height: 64px;
+        width: 64px;
+    }
+
+    .crop-avatar .preview-sm {
+        height: 44px;
+        width: 44px;
+    }
 }
 
 .modal-body {

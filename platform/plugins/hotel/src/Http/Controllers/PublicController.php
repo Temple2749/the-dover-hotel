@@ -517,6 +517,14 @@ class PublicController extends Controller
 
         $booking->save();
 
+        if (
+            $request->input('payment_method') === PaymentMethodEnum::BANK_TRANSFER
+            && $request->hasFile('payment_receipt')
+        ) {
+            $booking->payment_receipt = $request->file('payment_receipt')->store('hotel/payment-receipts', 'local');
+            $booking->save();
+        }
+
         if ($serviceIds) {
             $booking->services()->attach($serviceIds);
         }

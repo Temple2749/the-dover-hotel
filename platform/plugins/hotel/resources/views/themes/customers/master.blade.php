@@ -8,21 +8,23 @@
             <div class="row body-border">
                 <div class="col-md-3">
                     <div class="profile-sidebar">
-                        <form id="avatar-upload-form" class="customer-mobile-profile" enctype="multipart/form-data" action="javascript:void(0)" onsubmit="return false">
-                            <div class="avatar-upload-container">
-                                <div class="form-group mb-3">
-                                    <div id="account-avatar">
-                                        <div class="profile-image custom-avatar-master">
-                                            <div class="avatar-view mt-card-avatar">
-                                                <img class="br2" src="{{ auth('customer')->user()->avatar_url }}" alt="{{ auth('customer')->user()->name }}" />
+                        @if (in_array(Route::currentRouteName(), ['customer.overview', 'customer.edit-account']))
+                            <form id="avatar-upload-form" class="customer-mobile-profile" enctype="multipart/form-data" action="javascript:void(0)" onsubmit="return false">
+                                <div class="avatar-upload-container">
+                                    <div class="form-group mb-3">
+                                        <div id="account-avatar">
+                                            <div class="profile-image custom-avatar-master">
+                                                <div class="avatar-view mt-card-avatar">
+                                                    <img class="br2" src="{{ auth('customer')->user()->avatar_url }}" alt="{{ auth('customer')->user()->name }}" />
+                                                </div>
+                                                <i class="fa fa-pencil avatar-view"></i>
                                             </div>
-                                            <i class="fa fa-pencil avatar-view"></i>
                                         </div>
                                     </div>
+                                    <div id="print-msg" class="text-danger hidden"></div>
                                 </div>
-                                <div id="print-msg" class="text-danger hidden"></div>
-                            </div>
-                        </form>
+                            </form>
+                        @endif
 
                         <div class="text-center">
                             <div class="profile-usertitle-name">
@@ -66,6 +68,7 @@
         </div>
     </div>
 
+    @if (in_array(Route::currentRouteName(), ['customer.overview', 'customer.edit-account']))
     <div class="modal fade" id="avatar-modal" tabindex="-1" role="dialog" aria-labelledby="avatar-modal-label" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -81,7 +84,7 @@
                                 <input class="avatar-data" name="avatar_data" type="hidden" />
                                 @csrf
                                 <label for="avatarInput">{{ __('New image') }}</label>
-                                <input class="avatar-input" id="avatarInput" name="avatar_file" type="file" />
+                                <input class="avatar-input" id="avatarInput" name="avatar_file" type="file" accept="image/*" />
                             </div>
 
                             <div class="loading" style="display: none;" tabindex="-1" role="img" aria-label="{{ __('Loading') }}"></div>
@@ -107,4 +110,5 @@
             </div>
         </div>
     </div>
+    @endif
 </div>

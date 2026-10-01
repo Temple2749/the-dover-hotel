@@ -37,6 +37,7 @@ class CheckoutRequest extends Request
             'requests' => ['nullable', 'string', 'max:10000'],
             'services' => ['nullable', 'array'],
             'terms_conditions' => ['accepted:1'],
+            'payment_receipt' => ['required_if:payment_method,bank_transfer', 'file', 'mimes:jpg,jpeg,png,webp,pdf', 'max:10240'],
             'register_customer' => ['nullable'],
             'password' => ['nullable', 'required_if:register_customer,1', 'min:6'],
             'password_confirm' => ['nullable', 'required_if:register_customer,1', 'same:password'],

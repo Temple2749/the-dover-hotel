@@ -85,6 +85,12 @@ Route::group(['namespace' => 'Botble\Hotel\Http\Controllers', 'middleware' => ['
 
         Route::group(['prefix' => 'bookings', 'as' => 'booking.'], function () {
             Route::resource('', 'BookingController')->parameters(['' => 'booking'])->except(['create', 'store']);
+
+            Route::get('{booking}/payment-receipt', [
+                'as' => 'payment-receipt',
+                'uses' => 'BookingController@downloadPaymentReceipt',
+                'permission' => 'booking.edit',
+            ]);
         });
 
         Route::get('/booking-reports', [

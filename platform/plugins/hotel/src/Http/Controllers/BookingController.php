@@ -10,6 +10,7 @@ use Botble\Hotel\Forms\BookingForm;
 use Botble\Hotel\Http\Requests\UpdateBookingRequest;
 use Botble\Hotel\Models\Booking;
 use Botble\Hotel\Tables\BookingTable;
+use Illuminate\Support\Facades\Storage;
 
 class BookingController extends BaseController
 {
@@ -32,6 +33,16 @@ class BookingController extends BaseController
         $this->pageTitle(trans('core/base::forms.edit_item', ['name' => $booking->room->room_name]));
 
         return BookingForm::createFromModel($booking)->renderForm();
+    }
+
+    public function downloadPaymentReceipt(Booking $booking)
+    {
+        abort_unless(
+            $booking->payment_receipt && Storage::disk('local')->exists($booking->payment_receipt),
+            404
+        );
+
+        return Storage::disk('local')->download($booking->payment_receipt);
     }
 
     public function update(Booking $booking, UpdateBookingRequest $request)

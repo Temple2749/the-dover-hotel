@@ -239,6 +239,12 @@
                 </x-core::datagrid.item>
             @endif
 
+            @if (auth()->check() && $booking->payment_receipt)
+                <x-core::datagrid.item :title="__('Payment receipt')">
+                    <a href="{{ route('booking.payment-receipt', $booking->getKey()) }}">{{ __('Download receipt') }}</a>
+                </x-core::datagrid.item>
+            @endif
+
             @if ($displayBookingStatus ?? false)
                 <x-core::datagrid.item :title="__('Booking status')">
                     {!! $booking->status->toHtml() !!}

@@ -34,10 +34,10 @@ class RegisterController extends BaseController
 
         Theme::breadcrumb()->add(__('Home'), route('public.index'))->add(__('Register'), route('customer.register'));
 
-        if (! session()->has('url.intended') &&
-            ! in_array(url()->previous(), [route('customer.login'), route('customer.register')])
-        ) {
-            session(['url.intended' => url()->previous()]);
+        if ($bookingRedirectUrl = $this->bookingRedirectUrl()) {
+            session(['url.intended' => $bookingRedirectUrl]);
+        } else {
+            session()->forget('url.intended');
         }
 
         return Theme::scope(
@@ -75,9 +75,12 @@ class RegisterController extends BaseController
 
         $this->guard()->login($customer);
 
+        $redirectUrl = $this->bookingRedirectUrl() ?: route('customer.overview');
+        session()->forget('url.intended');
+
         return $this
             ->httpResponse()
-            ->setNextUrl($this->redirectPath())->setMessage(__('Registered successfully!'));
+            ->setNextUrl($redirectUrl)->setMessage(__('Registered successfully!'));
     }
 
     protected function create(array $data)
@@ -108,12 +111,24 @@ class RegisterController extends BaseController
 
         $this->guard()->login($customer);
 
-        $intendedUrl = session()->pull('url.intended', route('customer.overview'));
+        $intendedUrl = $this->bookingRedirectUrl() ?: route('customer.overview');
+        session()->forget('url.intended');
 
         return $this
             ->httpResponse()
             ->setNextUrl($intendedUrl)
             ->setMessage(__('You successfully confirmed your email address.'));
+    }
+
+    protected function bookingRedirectUrl(): ?string
+    {
+        $token = session('checkout_token');
+
+        if (! $token || ! session()->has($token)) {
+            return null;
+        }
+
+        return route('public.booking.form', ['token' => $token]);
     }
 
     public function resendConfirmation(Request $request)

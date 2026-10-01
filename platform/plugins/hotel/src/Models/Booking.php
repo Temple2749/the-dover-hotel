@@ -31,6 +31,7 @@ class Booking extends BaseModel
         'number_of_guests',
         'number_of_children',
         'payment_id',
+        'payment_receipt',
         'transaction_id',
         'tax_amount',
         'booking_number',

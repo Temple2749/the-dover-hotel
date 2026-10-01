@@ -28,6 +28,7 @@
                     <form
                         class="booking-form-main payment-checkout-form"
                         action="{{ route('public.booking.checkout') }}"
+                        enctype="multipart/form-data"
                         method="POST"
                     >
                         @csrf
@@ -329,6 +330,17 @@
                                         {!! PaymentMethods::render() !!}
                                     </ul>
                                 </div>
+                                <div class="form-group mb-20" id="bank-transfer-receipt" hidden>
+                                    <label for="payment_receipt">{{ __('Payment receipt') }} <span class="required">*</span></label>
+                                    <input
+                                        accept=".jpg,.jpeg,.png,.webp,.pdf"
+                                        class="form-control"
+                                        id="payment_receipt"
+                                        name="payment_receipt"
+                                        type="file"
+                                    >
+                                    <small>{{ __('Upload your bank transfer receipt before booking.') }}</small>
+                                </div>
                             @endif
 
                             {!! apply_filters('form_extra_fields_render', null) !!}
@@ -410,6 +422,37 @@
         </div>
     </div>
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const receiptField = document.getElementById('bank-transfer-receipt');
+        const receiptInput = document.getElementById('payment_receipt');
+
+        if (!receiptField || !receiptInput) {
+            return;
+        }
+
+        const updateReceiptField = function () {
+            const selectedMethod = document.querySelector('input[name="payment_method"]:checked');
+            const isBankTransfer = selectedMethod && selectedMethod.value === 'bank_transfer';
+
+            receiptField.hidden = !isBankTransfer;
+            receiptInput.required = Boolean(isBankTransfer);
+
+            if (!isBankTransfer) {
+                receiptInput.value = '';
+            }
+        };
+
+        document.addEventListener('change', function (event) {
+            if (event.target.name === 'payment_method') {
+                updateReceiptField();
+            }
+        });
+
+        updateReceiptField();
+    });
+</script>
 
 @if (is_plugin_active('payment'))
     {!! apply_filters(PAYMENT_FILTER_FOOTER_ASSETS, null) !!}

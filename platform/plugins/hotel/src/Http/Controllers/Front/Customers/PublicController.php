@@ -118,17 +118,18 @@ class PublicController extends BaseController
                 return $response->setError()->setMessage($result['message']);
             }
 
+            $file = $result['data'];
             $avatarData = json_decode($request->input('avatar_data'));
 
-            $file = $result['data'];
-
-            $thumbnailService
-                ->setImage(RvMedia::getRealPath($file->url))
-                ->setSize((int) $avatarData->width, (int) $avatarData->height)
-                ->setCoordinates((int) $avatarData->x, (int) $avatarData->y)
-                ->setDestinationPath(File::dirname($file->url))
-                ->setFileName(File::name($file->url) . 'Front' . File::extension($file->url))
-                ->save('crop');
+            if ($avatarData && $avatarData->width > 0 && $avatarData->height > 0) {
+                $thumbnailService
+                    ->setImage(RvMedia::getRealPath($file->url))
+                    ->setSize((int) $avatarData->width, (int) $avatarData->height)
+                    ->setCoordinates((int) $avatarData->x, (int) $avatarData->y)
+                    ->setDestinationPath(File::dirname($file->url))
+                    ->setFileName(File::name($file->url) . 'Front' . File::extension($file->url))
+                    ->save('crop');
+            }
 
             $account->avatar = $file->url;
             $account->save();

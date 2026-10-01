@@ -147,6 +147,8 @@ CropAvatar.prototype = {
 
                 if (this.isImageFile(file)) {
                     this.read(file)
+                } else {
+                    this.$avatarModal.find('.error-message').text('Please select a valid image file.').show()
                 }
             }
         } else {
@@ -200,16 +202,16 @@ CropAvatar.prototype = {
             this.$img.cropper({
                 aspectRatio: 1,
                 rotatable: true,
-                preview: this.$avatarPreview.selector,
-                done: function (data) {
-                    var json = [
-                        '{"x":' + data.x,
-                        '"y":' + data.y,
-                        '"height":' + data.height,
-                        '"width":' + data.width + '}',
-                    ].join()
+                preview: '.avatar-preview',
+                crop: function (event) {
+                    var data = event.detail
 
-                    _this.$avatarData.val(json)
+                    _this.$avatarData.val(JSON.stringify({
+                        x: Math.round(data.x),
+                        y: Math.round(data.y),
+                        height: Math.round(data.height),
+                        width: Math.round(data.width),
+                    }))
                 },
             })
 
@@ -245,7 +247,7 @@ CropAvatar.prototype = {
             },
 
             error: function (data) {
-                handleError(data)
+                handleError(data, _this.$avatarForm)
             },
 
             complete: function () {
