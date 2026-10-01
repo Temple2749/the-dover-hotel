@@ -35,14 +35,23 @@ class BookingController extends BaseController
         return BookingForm::createFromModel($booking)->renderForm();
     }
 
+    public function viewPaymentReceipt(Booking $booking)
+    {
+        $receiptPath = $this->paymentReceiptPath($booking);
+
+        return Storage::disk('local')->response($receiptPath);
+    }
+
     public function downloadPaymentReceipt(Booking $booking)
     {
-        abort_unless(
-            $booking->payment_receipt && Storage::disk('local')->exists($booking->payment_receipt),
-            404
-        );
+        return Storage::disk('local')->download($this->paymentReceiptPath($booking));
+    }
 
-        return Storage::disk('local')->download($booking->payment_receipt);
+    protected function paymentReceiptPath(Booking $booking): string
+    {
+        abort_unless($booking->payment_receipt && Storage::disk('local')->exists($booking->payment_receipt), 404);
+
+        return $booking->payment_receipt;
     }
 
     public function update(Booking $booking, UpdateBookingRequest $request)

@@ -38,6 +38,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -307,11 +308,17 @@ class PublicController extends Controller
         }
 
         $token = md5(Str::random(40));
+        $bookingData = $request->except(['_token']);
 
         session([
-            $token => $request->except(['_token']),
+            $token => $bookingData,
             'checkout_token' => $token,
         ]);
+        Cache::put(
+            $this->bookingDraftCacheKey($token),
+            $bookingData,
+            now()->addMinutes((int) config('session.lifetime', 120))
+        );
 
         return $response->setNextUrl(route('public.booking.form', $token));
     }
@@ -333,6 +340,15 @@ class PublicController extends Controller
         $sessionData = [];
         if (session()->has($token)) {
             $sessionData = session($token);
+        } else {
+            $sessionData = Cache::get($this->bookingDraftCacheKey($token), []);
+
+            if ($sessionData) {
+                session([
+                    $token => $sessionData,
+                    'checkout_token' => $token,
+                ]);
+            }
         }
 
         if (empty($sessionData)) {
@@ -446,7 +462,10 @@ class PublicController extends Controller
         if (! Auth::guard('customer')->check()) {
             $token = $request->input('token');
 
-            if ($token && session()->has($token)) {
+            if (
+                $token &&
+                (session()->has($token) || Cache::has($this->bookingDraftCacheKey($token)))
+            ) {
                 session()->put('url.intended', route('public.booking.form', ['token' => $token]));
             }
 
@@ -457,7 +476,18 @@ class PublicController extends Controller
 
         $token = $request->input('token');
 
-        if (! session()->has($token)) {
+        if ($token && ! session()->has($token)) {
+            $sessionData = Cache::get($this->bookingDraftCacheKey($token), []);
+
+            if ($sessionData) {
+                session([
+                    $token => $sessionData,
+                    'checkout_token' => $token,
+                ]);
+            }
+        }
+
+        if (! $token || ! session()->has($token)) {
             if (session()->has('booking_transaction_id')) {
                 return $response->setNextUrl(route('public.booking.information', session('booking_transaction_id')));
             }
@@ -614,6 +644,7 @@ class PublicController extends Controller
         if ($token = $request->input('token')) {
             session()->forget($token);
             session()->forget('checkout_token');
+            Cache::forget($this->bookingDraftCacheKey($token));
         }
 
         $newBooking = Booking::query()
@@ -624,6 +655,11 @@ class PublicController extends Controller
         return $response
             ->setNextUrl($redirectUrl)
             ->setMessage(__('Booking successfully!'));
+    }
+
+    protected function bookingDraftCacheKey(string $token): string
+    {
+        return 'hotel.booking.draft.' . $token;
     }
 
     public function checkoutSuccess(string $transactionId)

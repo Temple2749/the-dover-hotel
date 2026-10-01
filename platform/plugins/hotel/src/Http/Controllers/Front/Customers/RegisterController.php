@@ -14,6 +14,7 @@ use Botble\Theme\Facades\Theme;
 use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 
@@ -124,9 +125,30 @@ class RegisterController extends BaseController
     {
         $token = session('checkout_token');
 
-        if (! $token || ! session()->has($token)) {
+        if ($token && session()->has($token)) {
+            return route('public.booking.form', ['token' => $token]);
+        }
+
+        $intendedPath = parse_url((string) session('url.intended'), PHP_URL_PATH);
+        $placeholder = 'booking-draft-token';
+        $bookingPath = parse_url(route('public.booking.form', ['token' => $placeholder]), PHP_URL_PATH);
+        $tokenPrefix = substr($bookingPath, 0, -strlen($placeholder));
+
+        if (! $intendedPath || ! str_starts_with($intendedPath, $tokenPrefix)) {
             return null;
         }
+
+        $token = rawurldecode(substr($intendedPath, strlen($tokenPrefix)));
+        $draft = Cache::get('hotel.booking.draft.' . $token);
+
+        if (! $draft || str_contains($token, '/')) {
+            return null;
+        }
+
+        session([
+            $token => $draft,
+            'checkout_token' => $token,
+        ]);
 
         return route('public.booking.form', ['token' => $token]);
     }

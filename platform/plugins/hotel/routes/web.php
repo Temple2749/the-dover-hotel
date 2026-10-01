@@ -88,6 +88,12 @@ Route::group(['namespace' => 'Botble\Hotel\Http\Controllers', 'middleware' => ['
 
             Route::get('{booking}/payment-receipt', [
                 'as' => 'payment-receipt',
+                'uses' => 'BookingController@viewPaymentReceipt',
+                'permission' => 'booking.edit',
+            ]);
+
+            Route::get('{booking}/payment-receipt/download', [
+                'as' => 'payment-receipt.download',
                 'uses' => 'BookingController@downloadPaymentReceipt',
                 'permission' => 'booking.edit',
             ]);

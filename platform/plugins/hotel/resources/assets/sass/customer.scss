@@ -643,7 +643,7 @@ html {
     text-align: left;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item > i {
+.customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item > .sidebar-icon {
     align-items: center;
     background: #f4f6f5;
     border: 1px solid #e3e9e6;
@@ -715,48 +715,48 @@ html {
     color: #c75c68;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item:hover > i,
-.customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item.active > i {
+.customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item:hover > .sidebar-icon,
+.customer-page .profile-sidebar .profile-usermenu li.list-group-item .collection-item.active > .sidebar-icon {
     border-color: currentColor;
     transform: translateX(1px);
 }
 
-.customer-page .profile-sidebar .profile-usermenu li.list-group-item a.active > i,
-.customer-page .profile-sidebar .profile-usermenu li.list-group-item a:hover > i {
+.customer-page .profile-sidebar .profile-usermenu li.list-group-item a.active > .sidebar-icon,
+.customer-page .profile-sidebar .profile-usermenu li.list-group-item a:hover > .sidebar-icon {
     color: #a87535;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li:nth-child(1) .collection-item > i {
+.customer-page .profile-sidebar .profile-usermenu li:nth-child(1) .collection-item > .sidebar-icon {
     background: #f5eee6;
     border-color: #ead5b8;
     color: #a87535;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li:nth-child(2) .collection-item > i {
+.customer-page .profile-sidebar .profile-usermenu li:nth-child(2) .collection-item > .sidebar-icon {
     background: #f2edfb;
     border-color: #ded0f4;
     color: #8e5bd9;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li:nth-child(3) .collection-item > i {
+.customer-page .profile-sidebar .profile-usermenu li:nth-child(3) .collection-item > .sidebar-icon {
     background: #fff3e9;
     border-color: #f5d7bd;
     color: #e07a3f;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li:nth-child(4) .collection-item > i {
+.customer-page .profile-sidebar .profile-usermenu li:nth-child(4) .collection-item > .sidebar-icon {
     background: #edf7f4;
     border-color: #c9e7de;
     color: #1e9b83;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li:nth-child(5) .collection-item > i {
+.customer-page .profile-sidebar .profile-usermenu li:nth-child(5) .collection-item > .sidebar-icon {
     background: #fff8e8;
     border-color: #f1dfad;
     color: #d9a441;
 }
 
-.customer-page .profile-sidebar .profile-usermenu li:last-child .collection-item > i {
+.customer-page .profile-sidebar .profile-usermenu li:last-child .collection-item > .sidebar-icon {
     background: #fff0f1;
     border-color: #f0ced2;
     color: #c75c68;
