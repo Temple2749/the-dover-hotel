@@ -269,35 +269,42 @@
                             </div>
                             <div class="form-group input-group input-group-two left-icon mb-20">
                                 <label for="arrival_time">{{ __('Arrival') }}</label>
+                                @php
+                                    $arrivalTimeOptions = [
+                                        __('I do not know'),
+                                        '12:00 - 1:00 ' . __('AM'),
+                                        '1:00 - 2:00 ' . __('AM'),
+                                        '2:00 - 3:00 ' . __('AM'),
+                                        '3:00 - 4:00 ' . __('AM'),
+                                        '4:00 - 5:00 ' . __('AM'),
+                                        '5:00 - 6:00 ' . __('AM'),
+                                        '6:00 - 7:00 ' . __('AM'),
+                                        '7:00 - 8:00 ' . __('AM'),
+                                        '8:00 - 9:00 ' . __('AM'),
+                                        '9:00 - 10:00 ' . __('AM'),
+                                        '10:00 - 11:00 ' . __('AM'),
+                                        '11:00 - 12:00 ' . __('AM'),
+                                        '12:00 - 1:00 ' . __('PM'),
+                                        '1:00 - 2:00 ' . __('PM'),
+                                        '2:00 - 3:00 ' . __('PM'),
+                                        '3:00 - 4:00 ' . __('PM'),
+                                        '4:00 - 5:00 ' . __('PM'),
+                                        '5:00 - 6:00 ' . __('PM'),
+                                        '6:00 - 7:00 ' . __('PM'),
+                                        '7:00 - 8:00 ' . __('PM'),
+                                        '8:00 - 9:00 ' . __('PM'),
+                                        '9:00 - 10:00 ' . __('PM'),
+                                        '10:00 - 11:00 ' . __('PM'),
+                                        '11:00 - 12:00 ' . __('PM'),
+                                    ];
+                                @endphp
                                 <select
                                     id="arrival_time"
                                     name="arrival_time"
                                 >
-                                    <option>{{ __('I do not know') }}</option>
-                                    <option>12:00 - 1:00 {{ __('AM') }}</option>
-                                    <option>1:00 - 2:00 {{ __('AM') }}</option>
-                                    <option>2:00 - 3:00 {{ __('AM') }}</option>
-                                    <option>3:00 - 4:00 {{ __('AM') }}</option>
-                                    <option>4:00 - 5:00 {{ __('AM') }}</option>
-                                    <option>5:00 - 6:00 {{ __('AM') }}</option>
-                                    <option>6:00 - 7:00 {{ __('AM') }}</option>
-                                    <option>7:00 - 8:00 {{ __('AM') }}</option>
-                                    <option>8:00 - 9:00 {{ __('AM') }}</option>
-                                    <option>9:00 - 10:00 {{ __('AM') }}</option>
-                                    <option>10:00 - 11:00 {{ __('AM') }}</option>
-                                    <option>11:00 - 12:00 {{ __('AM') }}</option>
-                                    <option>12:00 - 1:00 {{ __('PM') }}</option>
-                                    <option>1:00 - 2:00 {{ __('PM') }}</option>
-                                    <option>2:00 - 3:00 {{ __('PM') }}</option>
-                                    <option>3:00 - 4:00 {{ __('PM') }}</option>
-                                    <option>4:00 - 5:00 {{ __('PM') }}</option>
-                                    <option>5:00 - 6:00 {{ __('PM') }}</option>
-                                    <option>6:00 - 7:00 {{ __('PM') }}</option>
-                                    <option>7:00 - 8:00 {{ __('PM') }}</option>
-                                    <option>8:00 - 9:00 {{ __('PM') }}</option>
-                                    <option>9:00 - 10:00 {{ __('PM') }}</option>
-                                    <option>10:00 - 11:00 {{ __('PM') }}</option>
-                                    <option>11:00 - 12:00 {{ __('PM') }}</option>
+                                    @foreach ($arrivalTimeOptions as $arrivalTimeOption)
+                                        <option value="{{ $arrivalTimeOption }}" @selected(old('arrival_time') === $arrivalTimeOption)>{{ $arrivalTimeOption }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group mb-20">

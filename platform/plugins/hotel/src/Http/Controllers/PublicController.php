@@ -466,7 +466,22 @@ class PublicController extends Controller
                 $token &&
                 (session()->has($token) || Cache::has($this->bookingDraftCacheKey($token)))
             ) {
-                session()->put('url.intended', route('public.booking.form', ['token' => $token]));
+                $checkoutInput = $request->except([
+                    '_token',
+                    'password',
+                    'password_confirm',
+                    'payment_receipt',
+                ]);
+
+                session([
+                    'url.intended' => route('public.booking.form', ['token' => $token]),
+                    'customer_google_booking_token' => $token,
+                    'hotel.booking.checkout_input.' . $token => $checkoutInput,
+                ]);
+
+                if ($request->filled('payment_method')) {
+                    session(['selected_payment_method' => $request->input('payment_method')]);
+                }
             }
 
             return redirect()->route('customer.login');

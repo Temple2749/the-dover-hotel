@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Laravel\Socialite\AbstractUser;
@@ -176,7 +177,43 @@ class SocialLoginController extends BaseController
 
         $redirectUrl = $providerData['redirect_url'] ?: BaseHelper::getHomepageUrl();
 
-        $redirectUrl = session()->has('url.intended') ? session('url.intended') : $redirectUrl;
+        if ($provider === 'google' && $guard === 'customer') {
+            $bookingToken = session()->pull('customer_google_booking_token');
+            $bookingCacheKey = $bookingToken ? 'hotel.booking.draft.' . $bookingToken : null;
+            $checkoutInputKey = $bookingToken ? 'hotel.booking.checkout_input.' . $bookingToken : null;
+            $bookingUrl = $bookingToken
+                ? route('public.booking.form', ['token' => $bookingToken])
+                : null;
+            $hasBookingState = $bookingToken && (
+                session()->has($bookingToken) || Cache::has($bookingCacheKey)
+            );
+
+            if ($hasBookingState && session('url.intended') === $bookingUrl) {
+                if (! session()->has($bookingToken)) {
+                    session([
+                        $bookingToken => Cache::get($bookingCacheKey),
+                        'checkout_token' => $bookingToken,
+                    ]);
+                }
+
+                $checkoutInput = session()->pull($checkoutInputKey, []);
+                if ($checkoutInput) {
+                    session()->flashInput($checkoutInput);
+                }
+
+                $redirectUrl = $bookingUrl;
+            } else {
+                $redirectUrl = route('customer.overview');
+
+                if ($checkoutInputKey) {
+                    session()->forget($checkoutInputKey);
+                }
+            }
+
+            session()->forget('url.intended');
+        } else {
+            $redirectUrl = session()->has('url.intended') ? session('url.intended') : $redirectUrl;
+        }
 
         return $this
             ->httpResponse()
