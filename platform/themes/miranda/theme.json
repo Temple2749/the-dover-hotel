@@ -1,8 +1,8 @@
 {
     "id": "botble/miranda",
-    "name": "Miranda",
+    "name": "The Dover Suits",
     "namespace": "Theme\\Miranda\\",
-    "description": "Hotel and Resort Booking system",
-    "author": "Botble Technologies",
+    "description": "Advance Hotel Software",
+    "author": "TempleEdge Platforms Ltd",
     "required_plugins": []
 }

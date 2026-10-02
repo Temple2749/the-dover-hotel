@@ -15,21 +15,15 @@
     <div class="{{ AdminAppearance::getContainerWidth() }}">
         <div class="d-flex justify-content-between align-items-center">
             <div>
-                Your license is invalid, please contact support. If you didn't set up license code, please go to
-                <a
-                    href="{{ route('settings.general') }}"
-                    class="text-white fw-bold"
-                > Settings </a> to activate license!
+                Welcome to Dover Hotel Admin. Your changes are being made with your staff ID and are being recorded.
             </div>
 
-            @if ($manageLicense)
-                <a
-                    class="btn-close"
-                    data-bs-toggle="modal"
-                    data-bs-target="#quick-activation-license-modal"
-                    aria-label="close"
-                ></a>
-            @endif
+            <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="close"
+            ></button>
         </div>
     </div>
 </x-core::alert>
