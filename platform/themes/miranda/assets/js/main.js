@@ -24,6 +24,31 @@
 -----------------------------*/
 
 let mirandaDoc
+let preloaderScrollPosition = { x: 0, y: 0 }
+let preloaderStartedAt = null
+let preloaderResourcesReady = false
+let preloaderHideStarted = false
+let preloaderMinimumWaitTimer = null
+
+function lockPreloaderScroll() {
+    preloaderScrollPosition = {
+        x: window.scrollX || window.pageXOffset || 0,
+        y: window.scrollY || window.pageYOffset || 0,
+    }
+
+    document.documentElement.classList.add('preloader-lock')
+    document.body.classList.add('preloader-lock')
+}
+
+function unlockPreloaderScroll() {
+    document.documentElement.classList.remove('preloader-lock')
+    document.body.classList.remove('preloader-lock')
+    window.scrollTo({
+        top: preloaderScrollPosition.y,
+        left: preloaderScrollPosition.x,
+        behavior: 'auto',
+    })
+}
 
 ;(function ($) {
     'use strict'
@@ -712,6 +737,17 @@ let mirandaDoc
 
     // Document Ready
     $(document).ready(function () {
+        if ($('.preloader').length) {
+            lockPreloaderScroll()
+            preloaderStartedAt = Date.now()
+
+            if (document.readyState === 'complete') {
+                preloaderResourcesReady = true
+            }
+
+            hidePreloaderWhenReady()
+        }
+
         mirandaDoc.init()
     })
 
@@ -735,12 +771,40 @@ let mirandaDoc
         })
     })
 
+    // Wait for page resources and the minimum display time before hiding.
+    function hidePreloaderWhenReady() {
+        if (!preloaderStartedAt || !preloaderResourcesReady || preloaderHideStarted) {
+            return
+        }
+
+        const remainingDisplayTime = 3000 - (Date.now() - preloaderStartedAt)
+
+        if (remainingDisplayTime > 0) {
+            if (!preloaderMinimumWaitTimer) {
+                preloaderMinimumWaitTimer = window.setTimeout(function () {
+                    preloaderMinimumWaitTimer = null
+                    hidePreloaderWhenReady()
+                }, remainingDisplayTime)
+            }
+
+            return
+        }
+
+        const $preloader = $('.preloader')
+
+        if ($preloader.length) {
+            preloaderHideStarted = true
+            $preloader.fadeOut('slow', function () {
+                $(this).remove()
+                unlockPreloaderScroll()
+            })
+        }
+    }
+
     // Window Load
     $(window).on('load', function () {
-        //===== 17. Preloader
-        $('.preloader').fadeOut('slow', function () {
-            $(this).remove()
-        })
+        preloaderResourcesReady = true
+        hidePreloaderWhenReady()
 
         //===== 18. Back to top
         $('#backToTop').on('click', function (e) {

@@ -126,6 +126,8 @@ class RegisterController extends BaseController
         $token = session('checkout_token');
 
         if ($token && session()->has($token)) {
+            $this->restoreCheckoutInputs($token);
+
             return route('public.booking.form', ['token' => $token]);
         }
 
@@ -150,7 +152,19 @@ class RegisterController extends BaseController
             'checkout_token' => $token,
         ]);
 
+        $this->restoreCheckoutInputs($token);
+
         return route('public.booking.form', ['token' => $token]);
+    }
+
+    protected function restoreCheckoutInputs(string $token): void
+    {
+        $checkoutInputKey = 'hotel.booking.checkout_input.' . $token;
+        $checkoutInput = session()->pull($checkoutInputKey, []);
+
+        if ($checkoutInput) {
+            session()->flashInput($checkoutInput);
+        }
     }
 
     public function resendConfirmation(Request $request)

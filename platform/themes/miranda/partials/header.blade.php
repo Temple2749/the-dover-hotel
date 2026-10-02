@@ -54,13 +54,12 @@
             <div class="widget nav-widget">
                 <h5 class="widget-title">{{ __('Our pages') }}</h5>
                 {!! Menu::renderMenuLocation('side-menu', ['view' => 'menu']) !!}
+                <h5 class="widget-title">{{ __('Account Center') }}</h5>
                 <ul class="auth-links">
                     @if (auth('customer')->check())
                         <li><a href="{{ route('customer.overview') }}">{{ __('My Account') }}</a></li>
-                        <li><a href="{{ route('customer.logout') }}">{{ __('Logout') }}</a></li>
                     @else
-                        <li><a href="{{ route('customer.login') }}">{{ __('Login') }}</a></li>
-                        <li><a href="{{ route('customer.register') }}">{{ __('Register') }}</a></li>
+                        <li><a href="{{ route('customer.login') }}">{{ __('Login / Register') }}</a></li>
                     @endif
                 </ul>
             </div>
